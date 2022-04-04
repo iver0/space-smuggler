@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     // TODO: Add health and armor system
-    // int health = 100;
-    // int armor = 0;
-    public float speed = 5f;
+    public int Health = 100;
+    // public int Armor = 0;
+    float speed = 5f;
     Rigidbody2D rb;
     PlayerInput playerInput;
     PlayerInputActions playerInputActions;
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        // Initialization
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -26,8 +27,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Aiming
         Vector3 mousePosition = Mouse.current.position.ReadValue();
-        // transform.LookAt(new Vector3(mousePosition.x, mousePosition.y, mousePosition.y));
         Vector3 dir = mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Movement
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         Move(inputVector);
     }
