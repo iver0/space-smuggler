@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Medkit : MonoBehaviour
+public class ArmorPlate : MonoBehaviour
 {
     GameObject player;
     Player playerScript;
@@ -17,7 +17,7 @@ public class Medkit : MonoBehaviour
     {
         if (col.gameObject == player)
         {
-            playerScript.Health = (playerScript.Health < 75) ? playerScript.Health + 25 : 100;
+            playerScript.Armor = (playerScript.Armor < 75) ? playerScript.Armor + 25 : 100;
             Destroy(gameObject);
         }
     }

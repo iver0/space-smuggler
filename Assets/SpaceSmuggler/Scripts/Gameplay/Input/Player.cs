@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // TODO: Add health and armor system
     public int Health = 100;
-    // public int Armor = 0;
+    public int Armor = 0;
     float speed = 5f;
     Rigidbody2D rb;
     PlayerInput playerInput;
