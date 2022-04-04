@@ -5,11 +5,15 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    // TODO: Add health and armor system
+    // int health = 100;
+    // int armor = 0;
     public float speed = 5f;
     Rigidbody2D rb;
     PlayerInput playerInput;
     PlayerInputActions playerInputActions;
-    // public Animator animator; // TODO: Create animation system
+    // TODO: Add animation system
+    // public Animator animator;
 
     void Awake()
     {
@@ -20,15 +24,24 @@ public class Player : MonoBehaviour
         playerInputActions.Player.Enable();
     }
 
-    public void FixedUpdate()
+    void Update()
+    {
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        // transform.LookAt(new Vector3(mousePosition.x, mousePosition.y, mousePosition.y));
+        Vector3 dir = mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    void FixedUpdate()
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         Move(inputVector);
     }
 
-    public void Move(Vector2 Movement)
+    void Move(Vector2 movement)
     {
-        if (Movement.x == 0 && Movement.y == 0)
+        if (movement.x == 0 && movement.y == 0)
         {
             rb.velocity = new Vector2(0, 0);
             rb.isKinematic = true;
@@ -37,7 +50,7 @@ public class Player : MonoBehaviour
         else
         {
             rb.isKinematic = false;
-            rb.MovePosition(rb.position + Movement * speed * Time.deltaTime);
+            rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
         }
     }
 }
