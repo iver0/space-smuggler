@@ -15,7 +15,7 @@ public class ArmorPlate : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject == player)
+        if (col.gameObject == player & playerScript.Armor != 100)
         {
             playerScript.Armor = (playerScript.Armor < 75) ? playerScript.Armor + 25 : 100;
             Destroy(gameObject);

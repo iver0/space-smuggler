@@ -15,7 +15,7 @@ public class Medkit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject == player)
+        if (col.gameObject == player & playerScript.Health != 100)
         {
             playerScript.Health = (playerScript.Health < 75) ? playerScript.Health + 25 : 100;
             Destroy(gameObject);
