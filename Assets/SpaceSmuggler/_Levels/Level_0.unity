@@ -2402,8 +2402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e814e5d2bb7c65b46a327cc37c40a4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
-  Armor: 0
+  playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
   HealthText: {fileID: 1436856274}
   ArmorText: {fileID: 259386279}
 --- !u!50 &1605592376
