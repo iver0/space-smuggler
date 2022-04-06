@@ -5,10 +5,26 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public static int Health = 100;
-    public static int Armor = 0;
+    public static Player Instance;
+    public int Health = 100;
+    public int Armor = 0;
     float speed = 5f;
     Rigidbody2D rb;
+
+    void Awake()
+    {
+        // Initialize singleton Player
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("Destroying duplicate Player Instance");
+            Destroy(this);
+        }
+        else
+        {
+            Debug.Log("Setting Player Instance");
+            Instance = this;
+        }
+    }
 
     void Start()
     {
