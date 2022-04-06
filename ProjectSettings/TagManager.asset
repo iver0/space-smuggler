@@ -7,7 +7,6 @@ TagManager:
   - Management
   - Medkit
   - Armor
-  - Armor Plate
   layers:
   - Default
   - TransparentFX

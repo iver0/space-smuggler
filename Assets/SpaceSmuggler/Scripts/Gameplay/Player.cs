@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public static Player Instance;
     public int Health = 100;
     public int Armor = 0;
+    public TextMeshProUGUI HealthText;
+    public TextMeshProUGUI ArmorText;
     float speed = 5f;
     Rigidbody2D rb;
 
@@ -27,6 +30,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        HealthText.text = $"Health: {Health}";
+        ArmorText.text = $"Armor: {Armor}";
     }
 
     void FixedUpdate()
