@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    PlayerInput playerInput;
     public InputActions InputActions;
 
     void Awake()
@@ -25,7 +20,6 @@ public class GameManager : MonoBehaviour
         }
 
         // Initialize input system
-        playerInput = GetComponent<PlayerInput>();
         InputActions = new InputActions();
         InputActions.Player.Enable();
     }
