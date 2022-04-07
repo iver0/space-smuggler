@@ -6,9 +6,9 @@ public class Medkit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") & playerData.Health != 100)
+        if (collision.gameObject.CompareTag("Player") & playerData.Health != playerData.MaxHealth)
         {
-            playerData.Health = (playerData.Health < 75) ? playerData.Health + 25 : 100;
+            playerData.Health = (playerData.Health < playerData.MaxHealth - 25) ? playerData.Health + 25 : playerData.MaxHealth;
             Destroy(gameObject);
         }
     }
