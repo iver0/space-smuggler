@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public PlayerData playerData;
     public TextMeshProUGUI HealthText;
     public TextMeshProUGUI ArmorText;
-    float speed = 5f;
     Rigidbody2D rb;
 
     void Start()
@@ -60,7 +59,7 @@ public class Player : MonoBehaviour
         else
         {
             rb.isKinematic = false;
-            rb.MovePosition(rb.position + inputVector * speed * Time.deltaTime);
+            rb.MovePosition(rb.position + inputVector * playerData.MoveSpeed * Time.deltaTime);
         }
     }
 }
