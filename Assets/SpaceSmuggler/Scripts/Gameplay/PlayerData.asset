@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   Health: 100
+  MaxArmor: 100
   Armor: 0

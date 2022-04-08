@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
 {
-    int initHealth;
-    int initArmor;
+    int initHealth = 100;
+    int initArmor = 100;
 
     [NonSerialized]
     public int MaxHealth;
@@ -18,7 +18,7 @@ public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
         MaxHealth = initHealth;
         Health = MaxHealth;
         MaxArmor = initArmor;
-        Armor = MaxArmor;
+        Armor = 0;
     }
 
     public void OnBeforeSerialize() { }
