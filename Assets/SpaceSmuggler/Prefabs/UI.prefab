@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 7539808482920235300}
   - component: {fileID: 7539808482920235301}
   - component: {fileID: 7539808482920235302}
+  - component: {fileID: 7963514194796383456}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -171,6 +172,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7963514194796383456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539808482920235323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9530575643904499bdfc7170b9b5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
 --- !u!1 &7539808482956971015
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +597,7 @@ GameObject:
   - component: {fileID: 7539808483544221021}
   - component: {fileID: 7539808483544221020}
   - component: {fileID: 7539808483544221011}
+  - component: {fileID: 4019980374630445929}
   m_Layer: 5
   m_Name: Armor
   m_TagString: Untagged
@@ -706,6 +721,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4019980374630445929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539808483544221010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454b0cda00442c342b951e540980ccdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
 --- !u!1 &7539808483641899305
 GameObject:
   m_ObjectHideFlags: 0

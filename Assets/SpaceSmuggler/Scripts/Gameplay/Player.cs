@@ -1,23 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public PlayerData playerData;
-    public TextMeshProUGUI HealthText;
-    public TextMeshProUGUI ArmorText;
+    [SerializeField] PlayerData playerData;
     Rigidbody2D rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        HealthText.text = $"Health: {playerData.Health}";
-        ArmorText.text = $"Armor: {playerData.Armor}";
     }
 
     void FixedUpdate()
