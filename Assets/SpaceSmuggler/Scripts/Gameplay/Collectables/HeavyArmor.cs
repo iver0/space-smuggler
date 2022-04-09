@@ -1,9 +1,9 @@
-public class LightArmor : Collectable
+public class HeavyArmor : Collectable
 {
     public override void OnCollect()
     {
-        playerData.MoveSpeed = 7f;
-        playerData.MaxArmor = 75;
+        playerData.MoveSpeed = 2.5f;
+        playerData.MaxArmor = 125;
         if (playerData.Armor != playerData.MaxArmor)
         {
             if (playerData.Armor < playerData.MaxArmor - 25)

@@ -9,7 +9,6 @@ public abstract class Collectable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             OnCollect();
-            Destroy(gameObject);
         }
     }
 
