@@ -2,7 +2,7 @@ public class HeavyArmor : Collectable
 {
     public override void OnCollect()
     {
-        playerData.MoveSpeed = 2.5f;
+        playerData.MoveSpeed = 4f;
         playerData.MaxArmor = 125;
         if (playerData.Armor != playerData.MaxArmor)
         {

@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.InputActions.Player.Pause.triggered)
+        if (GameManager.Instance.Input.Player.Pause.triggered)
         {
             //If paused, resume the game
             if (isPaused)
@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
-        GameManager.Instance.InputActions.Player.Movement.Disable();
+        GameManager.Instance.Input.Player.Movement.Disable();
     }
 
     public void ResumeGame()
@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        GameManager.Instance.InputActions.Player.Movement.Enable();
+        GameManager.Instance.Input.Player.Movement.Enable();
     }
 
     public void QuitGame()

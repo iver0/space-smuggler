@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public InputActions InputActions;
+    public InputActions Input;
 
     void Awake()
     {
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Initialize input system
-        InputActions = new InputActions();
-        InputActions.Player.Enable();
+        Input = new InputActions();
+        Input.Player.Enable();
     }
 }

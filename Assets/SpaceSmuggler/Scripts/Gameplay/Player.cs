@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         // Read movement input
-        Vector2 inputVector = GameManager.Instance.InputActions.Player.Movement.ReadValue<Vector2>();
+        Vector2 inputVector = GameManager.Instance.Input.Player.Movement.ReadValue<Vector2>();
 
         // Stop moving if not receiving movement input
         if (inputVector.x == 0 && inputVector.y == 0)
