@@ -20,7 +20,7 @@ public class PlayerArmor : MonoBehaviour
         HeavyArmor.OnHeavyArmorCollected -= ChangeArmor;
     }
 
-    void ChangeArmor(GameObject collectible, int value)
+    void ChangeArmor(int value)
     {
         if (playerData.Armor != playerData.MaxArmor)
         {
@@ -33,13 +33,12 @@ public class PlayerArmor : MonoBehaviour
                 playerData.Armor = playerData.MaxArmor;
             }
             OnArmorChanged?.Invoke();
-            Destroy(collectible);
         }
     }
 
-    void ChangeArmor(GameObject collectible, int value, int maxValue)
+    void ChangeArmor(int value, int maxValue)
     {
         playerData.MaxArmor = maxValue;
-        ChangeArmor(collectible, value);
+        ChangeArmor(value);
     }
 }

@@ -9,14 +9,16 @@ public class PlayerHealth : MonoBehaviour
     void OnEnable()
     {
         Medkit.OnMedkitCollected += ChangeHealth;
+        Morphine.OnMorphineCollected += ChangeHealth;
     }
 
     void OnDisable()
     {
         Medkit.OnMedkitCollected -= ChangeHealth;
+        Morphine.OnMorphineCollected -= ChangeHealth;
     }
 
-    void ChangeHealth(GameObject collectible, int value)
+    void ChangeHealth(int value)
     {
         if (playerData.Health != playerData.MaxHealth)
         {
@@ -29,13 +31,12 @@ public class PlayerHealth : MonoBehaviour
                 playerData.Health = playerData.MaxHealth;
             }
             OnHealthChanged?.Invoke();
-            Destroy(collectible);
         }
     }
 
-    void ChangeHealth(GameObject collectible, int value, int maxValue)
+    void ChangeHealth(int value, int maxValue)
     {
         playerData.MaxHealth = maxValue;
-        ChangeHealth(collectible, value);
+        ChangeHealth(value);
     }
 }
