@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Armor : MonoBehaviour, ICollectible
 {
-    public static event Action<int, GameObject> OnArmorCollected;
+    public static event Action<GameObject, int> OnArmorCollected;
     
     public void Collect()
     {
-        OnArmorCollected?.Invoke(25, gameObject);
+        OnArmorCollected?.Invoke(gameObject, 25);
     }
 }

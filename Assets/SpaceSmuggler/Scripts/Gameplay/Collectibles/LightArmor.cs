@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class LightArmor : MonoBehaviour, ICollectible
 {
-    public static event Action<int, GameObject> OnLightArmorCollected;
+    public static event Action<GameObject, int, int> OnLightArmorCollected;
     
     public void Collect()
     {
-        OnLightArmorCollected?.Invoke(25, gameObject);
+        OnLightArmorCollected?.Invoke(gameObject, 25, 75);
     }
 }

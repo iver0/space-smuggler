@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class Medkit : MonoBehaviour, ICollectible
 {
-    public static event Action<int, GameObject> OnMedkitCollected;
+    public static event Action<GameObject, int> OnMedkitCollected;
     
     public void Collect()
-    {
-        Debug.Log("Collect()");
-        OnMedkitCollected?.Invoke(25, gameObject);
+    { 
+        OnMedkitCollected?.Invoke(gameObject, 25);
     }
 }

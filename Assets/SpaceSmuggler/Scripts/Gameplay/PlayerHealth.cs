@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
         Medkit.OnMedkitCollected -= ChangeHealth;
     }
 
-    void ChangeHealth(int value, GameObject collectible)
+    void ChangeHealth(GameObject collectible, int value)
     {
         if (playerData.Health != playerData.MaxHealth)
         {
@@ -28,8 +28,14 @@ public class PlayerHealth : MonoBehaviour
             {
                 playerData.Health = playerData.MaxHealth;
             }
-            Destroy(collectible);
             OnHealthChanged?.Invoke();
+            Destroy(collectible);
         }
+    }
+
+    void ChangeHealth(GameObject collectible, int value, int maxValue)
+    {
+        playerData.MaxHealth = maxValue;
+        ChangeHealth(collectible, value);
     }
 }
