@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Armor : MonoBehaviour, ICollectible
 {
-    public static event Action<GameObject, int> OnArmorCollected;
+    public static event Action<GameObject, int> ArmorCollected;
 
     void OnEnable()
     {
-        PlayerArmor.OnCollectibleCollected += DestroyCollectible;
+        PlayerArmor.ItemCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        PlayerArmor.OnCollectibleCollected -= DestroyCollectible;
+        PlayerArmor.ItemCollected -= OnItemCollected;
     }
 
     public void Collect()
     {
-        OnArmorCollected?.Invoke(gameObject, 25);
+        ArmorCollected?.Invoke(gameObject, 25);
     }
 
-    public void DestroyCollectible(GameObject collectible)
+    public void OnItemCollected(GameObject item)
     {
-        if (GameObject.ReferenceEquals(collectible, gameObject))
+        if (GameObject.ReferenceEquals(item, gameObject))
         {
             Destroy(gameObject);
         }

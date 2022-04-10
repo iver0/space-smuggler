@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         Player.move.Disable();
+        Player.look.Disable();
     }
 
     public void ResumeGame()
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         Player.move.Enable();
+        Player.look.Enable();
     }
 
     public void QuitGame()

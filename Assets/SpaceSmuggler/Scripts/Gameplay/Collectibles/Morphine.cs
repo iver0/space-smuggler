@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Morphine : MonoBehaviour, ICollectible
 {
-    public static event Action<GameObject, int, int, bool, int> OnMorphineCollected;
+    public static event Action<GameObject, int, int, bool, int> MorphineCollected;
 
     void OnEnable()
     {
-        PlayerHealth.OnCollectibleCollected += DestroyCollectible;
+        PlayerHealth.ItemCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        PlayerHealth.OnCollectibleCollected -= DestroyCollectible;
+        PlayerHealth.ItemCollected -= OnItemCollected;
     }
 
     public void Collect()
     {
-        OnMorphineCollected?.Invoke(gameObject, 25, 125, true, 60);
+        MorphineCollected?.Invoke(gameObject, 25, 125, true, 60);
     }
 
-    public void DestroyCollectible(GameObject collectible)
+    public void OnItemCollected(GameObject item)
     {
-        if (GameObject.ReferenceEquals(collectible, gameObject))
+        if (GameObject.ReferenceEquals(item, gameObject))
         {
             Destroy(gameObject);
         }

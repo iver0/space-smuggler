@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class PlayerArmor : MonoBehaviour
 {
-    public static event Action OnArmorChanged;
-    public static event Action<GameObject> OnCollectibleCollected;
+    public static event Action ArmorChanged;
+    public static event Action<GameObject> ItemCollected;
     [SerializeField] PlayerData playerData;
 
     void OnEnable()
     {
-        Armor.OnArmorCollected += ChangeArmor;
-        LightArmor.OnLightArmorCollected += ChangeArmor;
-        HeavyArmor.OnHeavyArmorCollected += ChangeArmor;
+        Armor.ArmorCollected += OnItemCollected;
+        LightArmor.LightArmorCollected += OnItemCollected;
+        HeavyArmor.HeavyArmorCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        Armor.OnArmorCollected -= ChangeArmor;
-        LightArmor.OnLightArmorCollected -= ChangeArmor;
-        HeavyArmor.OnHeavyArmorCollected -= ChangeArmor;
+        Armor.ArmorCollected -= OnItemCollected;
+        LightArmor.LightArmorCollected -= OnItemCollected;
+        HeavyArmor.HeavyArmorCollected -= OnItemCollected;
     }
 
-    void ChangeArmor(GameObject collectible, int value)
+    void OnItemCollected(GameObject item, int value)
     {
         if (playerData.Armor != playerData.MaxArmor)
         {
@@ -33,14 +33,14 @@ public class PlayerArmor : MonoBehaviour
             {
                 playerData.Armor = playerData.MaxArmor;
             }
-            OnCollectibleCollected?.Invoke(collectible);
-            OnArmorChanged?.Invoke();
+            ItemCollected?.Invoke(item);
+            ArmorChanged?.Invoke();
         }
     }
 
-    void ChangeArmor(GameObject collectible, int value, int maxValue)
+    void OnItemCollected(GameObject item, int value, int maxValue)
     {
         playerData.MaxArmor = maxValue;
-        ChangeArmor(collectible, value);
+        OnItemCollected(item, value);
     }
 }

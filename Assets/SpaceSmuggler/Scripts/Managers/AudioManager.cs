@@ -7,17 +7,16 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        // Initialize singleton AudioManager
+        // Ensure that there is only one instance of the audio manager
         if (Instance != null && Instance != this)
         {
-            Debug.Log("Destroying duplicate AudioManager Instance");
             Destroy(this);
         }
         else
         {
-            Debug.Log("Setting AudioManager Instance");
             Instance = this;
         }
+        
         audioSource = GetComponent<AudioSource>();
     }
 

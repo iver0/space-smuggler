@@ -4,5 +4,5 @@ public interface ICollectible
 {
     public void Collect();
 
-    public void DestroyCollectible(GameObject collectible);
+    public void OnItemCollected(GameObject item);
 }

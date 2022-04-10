@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Medkit : MonoBehaviour, ICollectible
 {
-    public static event Action<GameObject, int> OnMedkitCollected;
+    public static event Action<GameObject, int> MedkitCollected;
 
     void OnEnable()
     {
-        PlayerHealth.OnCollectibleCollected += DestroyCollectible;
+        PlayerHealth.ItemCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        PlayerHealth.OnCollectibleCollected -= DestroyCollectible;
+        PlayerHealth.ItemCollected -= OnItemCollected;
     }
 
     public void Collect()
     {
-        OnMedkitCollected?.Invoke(gameObject, 25);
+        MedkitCollected?.Invoke(gameObject, 25);
     }
 
-    public void DestroyCollectible(GameObject collectible)
+    public void OnItemCollected(GameObject item)
     {
-        if (GameObject.ReferenceEquals(collectible, gameObject))
+        if (GameObject.ReferenceEquals(item, gameObject))
         {
             Destroy(gameObject);
         }

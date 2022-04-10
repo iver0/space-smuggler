@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static event Action OnHealthChanged;
-    public static event Action<GameObject> OnCollectibleCollected;
+    public static event Action HealthChanged;
+    public static event Action<GameObject> ItemCollected;
     [SerializeField] PlayerData playerData;
     int tempMaxHealth;
 
     void OnEnable()
     {
-        Medkit.OnMedkitCollected += ChangeHealth;
-        Morphine.OnMorphineCollected += ChangeHealth;
+        Medkit.MedkitCollected += OnItemCollected;
+        Morphine.MorphineCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        Medkit.OnMedkitCollected -= ChangeHealth;
-        Morphine.OnMorphineCollected -= ChangeHealth;
+        Medkit.MedkitCollected -= OnItemCollected;
+        Morphine.MorphineCollected -= OnItemCollected;
     }
 
-    void ChangeHealth(GameObject collectible, int value)
+    void OnItemCollected(GameObject item, int value)
     {
         if (playerData.Health != playerData.MaxHealth)
         {
@@ -33,30 +33,30 @@ public class PlayerHealth : MonoBehaviour
             {
                 playerData.Health = playerData.MaxHealth;
             }
-            OnCollectibleCollected?.Invoke(collectible);
-            OnHealthChanged?.Invoke();
+            ItemCollected?.Invoke(item);
+            HealthChanged?.Invoke();
         }
     }
 
-    void ChangeHealth(GameObject collectible, int value, int maxValue)
+    void OnItemCollected(GameObject item, int value, int maxValue)
     {
         playerData.MaxHealth = maxValue;
-        ChangeHealth(collectible, value);
+        OnItemCollected(item, value);
     }
 
-    void ChangeHealth(GameObject collectible, int value, int maxValue, bool isTemp, int duration)
+    void OnItemCollected(GameObject item, int value, int maxValue, bool isTemp, int duration)
     {
         if (isTemp)
         {
             tempMaxHealth = playerData.MaxHealth;
-            StartCoroutine(EffectDuration(duration));
+            StartCoroutine(FadeEffect(duration));
         }
-        ChangeHealth(collectible, value, maxValue);
+        OnItemCollected(item, value, maxValue);
     }
 
-    IEnumerator EffectDuration(int duration)
+    IEnumerator FadeEffect(int duration)
     {
         yield return new WaitForSeconds(duration);
-        ChangeHealth(gameObject, 0, tempMaxHealth);
+        OnItemCollected(gameObject, 0, tempMaxHealth);
     }
 }
