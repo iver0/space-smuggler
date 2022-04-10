@@ -13,12 +13,12 @@ public class HealthBar : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerHealth.OnHealthChanged += RenderHealth;
+        PlayerHealth.HealthChanged += RenderHealth;
     }
 
     void OnDisable()
     {
-        PlayerHealth.OnHealthChanged -= RenderHealth;
+        PlayerHealth.HealthChanged -= RenderHealth;
     }
 
     void RenderHealth()

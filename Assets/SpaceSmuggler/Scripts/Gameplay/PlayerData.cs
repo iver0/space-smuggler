@@ -4,11 +4,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
 {
-    int initHealth = 100;
-    int initArmor = 100;
-    float initMoveSpeed = 5f;
+    int _initHealth = 100;
+    int _initArmor = 100;
+    float _initMoveSpeed = 5f;
 
-    [NonSerialized]
     public int MaxHealth;
     public int Health;
     public int MaxArmor;
@@ -17,11 +16,11 @@ public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        MaxHealth = initHealth;
+        MaxHealth = _initHealth;
         Health = MaxHealth;
-        MaxArmor = initArmor;
+        MaxArmor = _initArmor;
         Armor = 0;
-        MoveSpeed = initMoveSpeed;
+        MoveSpeed = _initMoveSpeed;
     }
 
     public void OnBeforeSerialize() { }

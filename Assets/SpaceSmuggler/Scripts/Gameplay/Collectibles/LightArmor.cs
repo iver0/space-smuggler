@@ -3,27 +3,29 @@ using UnityEngine;
 
 public class LightArmor : MonoBehaviour, ICollectible
 {
-    public static event Action<GameObject, int, int> OnLightArmorCollected;
+    public static event Action<GameObject, int, int> LightArmorCollected;
+    [SerializeField] AudioClip pickupSound;
 
     void OnEnable()
     {
-        PlayerArmor.OnCollectibleCollected += DestroyCollectible;
+        PlayerArmor.ItemCollected += OnItemCollected;
     }
 
     void OnDisable()
     {
-        PlayerArmor.OnCollectibleCollected -= DestroyCollectible;
+        PlayerArmor.ItemCollected -= OnItemCollected;
     }
 
     public void Collect()
     {
-        OnLightArmorCollected?.Invoke(gameObject, 25, 75);
+        LightArmorCollected?.Invoke(gameObject, 25, 75);
     }
 
-    public void DestroyCollectible(GameObject collectible)
+    public void OnItemCollected(GameObject item)
     {
-        if (GameObject.ReferenceEquals(collectible, gameObject))
+        if (GameObject.ReferenceEquals(item, gameObject))
         {
+            AudioManager.Instance.Play(pickupSound);
             Destroy(gameObject);
         }
     }

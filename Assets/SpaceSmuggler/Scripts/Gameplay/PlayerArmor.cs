@@ -5,7 +5,7 @@ public class PlayerArmor : MonoBehaviour
 {
     public static event Action ArmorChanged;
     public static event Action<GameObject> ItemCollected;
-    [SerializeField] PlayerData playerData;
+    [SerializeField] PlayerData _playerData;
 
     void OnEnable()
     {
@@ -23,15 +23,15 @@ public class PlayerArmor : MonoBehaviour
 
     void OnItemCollected(GameObject item, int value)
     {
-        if (playerData.Armor != playerData.MaxArmor)
+        if (_playerData.Armor != _playerData.MaxArmor)
         {
-            if (playerData.Armor + value < playerData.MaxArmor)
+            if (_playerData.Armor + value < _playerData.MaxArmor)
             {
-                playerData.Armor += value;
+                _playerData.Armor += value;
             }
             else
             {
-                playerData.Armor = playerData.MaxArmor;
+                _playerData.Armor = _playerData.MaxArmor;
             }
             ItemCollected?.Invoke(item);
             ArmorChanged?.Invoke();
@@ -40,7 +40,7 @@ public class PlayerArmor : MonoBehaviour
 
     void OnItemCollected(GameObject item, int value, int maxValue)
     {
-        playerData.MaxArmor = maxValue;
+        _playerData.MaxArmor = maxValue;
         OnItemCollected(item, value);
     }
 }

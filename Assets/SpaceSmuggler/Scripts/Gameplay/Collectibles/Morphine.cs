@@ -4,6 +4,7 @@ using UnityEngine;
 public class Morphine : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int, int, bool, int> MorphineCollected;
+    [SerializeField] AudioClip pickupSound;
 
     void OnEnable()
     {
@@ -24,6 +25,7 @@ public class Morphine : MonoBehaviour, ICollectible
     {
         if (GameObject.ReferenceEquals(item, gameObject))
         {
+            AudioManager.Instance.Play(pickupSound);
             Destroy(gameObject);
         }
     }

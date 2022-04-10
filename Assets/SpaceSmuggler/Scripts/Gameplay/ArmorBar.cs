@@ -13,12 +13,12 @@ public class ArmorBar : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerArmor.OnArmorChanged += RenderArmor;
+        PlayerArmor.ArmorChanged += RenderArmor;
     }
 
     void OnDisable()
     {
-        PlayerArmor.OnArmorChanged -= RenderArmor;
+        PlayerArmor.ArmorChanged -= RenderArmor;
     }
 
     void RenderArmor()

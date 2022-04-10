@@ -4,6 +4,7 @@ using UnityEngine;
 public class Medkit : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int> MedkitCollected;
+    [SerializeField] AudioClip pickupSound;
 
     void OnEnable()
     {
@@ -24,6 +25,7 @@ public class Medkit : MonoBehaviour, ICollectible
     {
         if (GameObject.ReferenceEquals(item, gameObject))
         {
+            AudioManager.Instance.Play(pickupSound);
             Destroy(gameObject);
         }
     }
