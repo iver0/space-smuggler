@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     public static event Action OnHealthChanged;
+    public static event Action<GameObject> OnCollectibleCollected;
     [SerializeField] PlayerData playerData;
+    int tempMaxHealth;
 
     void OnEnable()
     {
@@ -18,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         Morphine.OnMorphineCollected -= ChangeHealth;
     }
 
-    void ChangeHealth(int value)
+    void ChangeHealth(GameObject collectible, int value)
     {
         if (playerData.Health != playerData.MaxHealth)
         {
@@ -30,13 +33,30 @@ public class PlayerHealth : MonoBehaviour
             {
                 playerData.Health = playerData.MaxHealth;
             }
+            OnCollectibleCollected?.Invoke(collectible);
             OnHealthChanged?.Invoke();
         }
     }
 
-    void ChangeHealth(int value, int maxValue)
+    void ChangeHealth(GameObject collectible, int value, int maxValue)
     {
         playerData.MaxHealth = maxValue;
-        ChangeHealth(value);
+        ChangeHealth(collectible, value);
+    }
+
+    void ChangeHealth(GameObject collectible, int value, int maxValue, bool isTemp, int duration)
+    {
+        if (isTemp)
+        {
+            tempMaxHealth = playerData.MaxHealth;
+            StartCoroutine(EffectDuration(duration));
+        }
+        ChangeHealth(collectible, value, maxValue);
+    }
+
+    IEnumerator EffectDuration(int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ChangeHealth(gameObject, 0, tempMaxHealth);
     }
 }

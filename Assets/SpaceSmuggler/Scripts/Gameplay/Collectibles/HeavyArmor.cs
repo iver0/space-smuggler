@@ -3,11 +3,28 @@ using UnityEngine;
 
 public class HeavyArmor : MonoBehaviour, ICollectible
 {
-    public static event Action<int, int> OnHeavyArmorCollected;
-    
+    public static event Action<GameObject, int, int> OnHeavyArmorCollected;
+
+    void OnEnable()
+    {
+        PlayerArmor.OnCollectibleCollected += DestroyCollectible;
+    }
+
+    void OnDisable()
+    {
+        PlayerArmor.OnCollectibleCollected -= DestroyCollectible;
+    }
+
     public void Collect()
     {
-        OnHeavyArmorCollected?.Invoke(25, 125);
-        Destroy(gameObject);
+        OnHeavyArmorCollected?.Invoke(gameObject, 25, 125);
+    }
+
+    public void DestroyCollectible(GameObject collectible)
+    {
+        if (GameObject.ReferenceEquals(collectible, gameObject))
+        {
+            Destroy(gameObject);
+        }
     }
 }

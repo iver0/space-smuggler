@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerArmor : MonoBehaviour
 {
     public static event Action OnArmorChanged;
+    public static event Action<GameObject> OnCollectibleCollected;
     [SerializeField] PlayerData playerData;
 
     void OnEnable()
@@ -20,7 +21,7 @@ public class PlayerArmor : MonoBehaviour
         HeavyArmor.OnHeavyArmorCollected -= ChangeArmor;
     }
 
-    void ChangeArmor(int value)
+    void ChangeArmor(GameObject collectible, int value)
     {
         if (playerData.Armor != playerData.MaxArmor)
         {
@@ -32,13 +33,14 @@ public class PlayerArmor : MonoBehaviour
             {
                 playerData.Armor = playerData.MaxArmor;
             }
+            OnCollectibleCollected?.Invoke(collectible);
             OnArmorChanged?.Invoke();
         }
     }
 
-    void ChangeArmor(int value, int maxValue)
+    void ChangeArmor(GameObject collectible, int value, int maxValue)
     {
         playerData.MaxArmor = maxValue;
-        ChangeArmor(value);
+        ChangeArmor(collectible, value);
     }
 }
