@@ -4,53 +4,49 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
+    InputActions Input;
+    public static InputAction move;
+    public static InputAction look;
+    public static InputAction pause;
+    Vector2 moveDirection;
+    Vector2 mousePosition;
     Rigidbody2D rb;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        Input = new InputActions();
+    }
+
+    void OnEnable()
+    {
+        move = Input.Player.Move;
+        move.Enable();
+        look = Input.Player.Look;
+        look.Enable();
+        pause = Input.Player.Pause;
+        pause.Enable();
+    }
+
+    void OnDisable()
+    {
+        move.Disable();
+        look.Disable();
+        pause.Disable();
+    }
+
+    void Update()
+    {
+        moveDirection = move.ReadValue<Vector2>();
+        mousePosition = Camera.main.ScreenToWorldPoint(look.ReadValue<Vector2>());
     }
 
     void FixedUpdate()
     {
-        Aim();
-        Move();
-    }
+        rb.velocity = new Vector2(moveDirection.x * playerData.MoveSpeed, moveDirection.y * playerData.MoveSpeed);
 
-    // Aiming
-    void Aim()
-    {
-        // Read mouse position
-        Vector3 mousePosition = Mouse.current.position.ReadValue();
-
-        // Calculate direction to mouse position
-        Vector3 dir = mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-
-        // Calculate rotation in the direction of mouse position
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        // Apply the rotation
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
-    // Movement
-    void Move()
-    {
-        // Read movement input
-        Vector2 inputVector = GameManager.Instance.Input.Player.Movement.ReadValue<Vector2>();
-
-        // Stop moving if not receiving movement input
-        if (inputVector.x == 0 && inputVector.y == 0)
-        {
-            rb.velocity = new Vector2(0, 0);
-            rb.isKinematic = true;
-            return;
-        }
-        // Else move in the direction of movement input
-        else
-        {
-            rb.isKinematic = false;
-            rb.MovePosition(rb.position + inputVector * playerData.MoveSpeed * Time.deltaTime);
-        }
+        Vector2 aimDirection = mousePosition - rb.position;
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = aimAngle;
     }
 }

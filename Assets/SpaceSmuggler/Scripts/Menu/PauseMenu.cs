@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -6,25 +7,31 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     bool isPaused;
 
-    void Start()
+    void Update()
     {
         pauseMenu.SetActive(false);
     }
 
-    void Update()
+    void OnEnable()
     {
-        if (GameManager.Instance.Input.Player.Pause.triggered)
+        
+        Player.pause.performed += PauseInput;
+    }
+
+    void OnDisable()
+    {
+        Player.pause.performed -= PauseInput;
+    }
+
+    void PauseInput(InputAction.CallbackContext context)
+    {
+        if (isPaused)
         {
-            //If paused, resume the game
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            // If unpaused, pause the game
-            else
-            {
-                PauseGame();
-            }
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
         }
     }
 
@@ -33,7 +40,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
-        GameManager.Instance.Input.Player.Movement.Disable();
+        Player.move.Disable();
     }
 
     public void ResumeGame()
@@ -41,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        GameManager.Instance.Input.Player.Movement.Enable();
+        Player.move.Enable();
     }
 
     public void QuitGame()
