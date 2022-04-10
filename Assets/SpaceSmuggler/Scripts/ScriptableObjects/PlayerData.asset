@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b85584fcad0cd8449c3785a08a96763, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  Health: 100
-  MaxArmor: 100
-  Armor: 0
+  MaxHealth: 125
+  Health: 51
+  MaxArmor: 75
+  Armor: 50
+  MoveSpeed: 5

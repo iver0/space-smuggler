@@ -4,7 +4,13 @@ using UnityEngine;
 public class LightArmor : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int, int> LightArmorCollected;
-    [SerializeField] AudioClip pickupSound;
+    [SerializeField] AudioEvent audioEvent;
+    AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnEnable()
     {
@@ -25,7 +31,7 @@ public class LightArmor : MonoBehaviour, ICollectible
     {
         if (GameObject.ReferenceEquals(item, gameObject))
         {
-            AudioManager.Instance.Play(pickupSound);
+            audioEvent.Play(audioSource);
             Destroy(gameObject);
         }
     }
