@@ -3,7 +3,7 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] PlayerData _playerData;
+    [SerializeField] PlayerDataSO _playerData;
     TextMeshProUGUI _healthText;
 
     void Awake()
@@ -13,12 +13,12 @@ public class HealthBar : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerData.HealthChanged += RenderHealth;
+        PlayerDataSO.HealthChanged += RenderHealth;
     }
 
     void OnDisable()
     {
-        PlayerData.HealthChanged -= RenderHealth;
+        PlayerDataSO.HealthChanged -= RenderHealth;
     }
 
     void RenderHealth()

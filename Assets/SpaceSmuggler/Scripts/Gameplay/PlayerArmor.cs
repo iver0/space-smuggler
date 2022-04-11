@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerArmor : MonoBehaviour
 {
     public static event Action<GameObject> ItemCollected;
-    [SerializeField] PlayerData _playerData;
+    [SerializeField] PlayerDataSO _playerData;
 
     void OnEnable()
     {

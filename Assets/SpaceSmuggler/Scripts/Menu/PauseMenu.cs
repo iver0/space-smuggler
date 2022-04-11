@@ -1,61 +1,45 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static event UnityAction<GameState> ChangeGameStateEvent;
     [SerializeField] GameObject _pauseMenu;
-    bool _isPaused;
+    [SerializeField] InputReaderSO _inputReader;
 
-    void Update()
+    void Awake()
     {
         _pauseMenu.SetActive(false);
     }
 
     void OnEnable()
     {
-        
-        Player.Pause.performed += PauseInput;
+        _inputReader.PauseEvent += OnPause;
+        _inputReader.ResumeEvent += OnResume;
     }
 
     void OnDisable()
     {
-        Player.Pause.performed -= PauseInput;
+        _inputReader.PauseEvent -= OnPause;
+        _inputReader.ResumeEvent -= OnResume;
     }
-
-    void PauseInput(InputAction.CallbackContext context)
-    {
-        if (_isPaused)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
-    }
-
-    public void PauseGame()
-    {
-        _pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        _isPaused = true;
-        Player.Move.Disable();
-        Player.Look.Disable();
-    }
-
-    public void ResumeGame()
-    {
-        _pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        _isPaused = false;
-        Player.Move.Enable();
-        Player.Look.Enable();
-    }
-
     public void QuitGame()
     {
-        ResumeGame();
+        OnResume();
         SceneManager.LoadScene("MainMenu");
+    }
+
+    // Event listeners
+    void OnPause()
+    {
+        ChangeGameStateEvent?.Invoke(GameState.Pause);
+        _pauseMenu.SetActive(true);
+    }
+
+    void OnResume()
+    {
+        ChangeGameStateEvent?.Invoke(GameState.Play);
+        _pauseMenu.SetActive(false);
     }
 }

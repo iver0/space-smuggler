@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Gameplay/PlayerData")]
+public class PlayerDataSO : ScriptableObject, ISerializationCallbackReceiver
 {
     public static event Action HealthChanged;
     public static event Action ArmorChanged;

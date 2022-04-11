@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public static event Action<GameObject> ItemCollected;
-    [SerializeField] PlayerData _playerData;
+    [SerializeField] PlayerDataSO _playerData;
     int _tmpMaxHealth;
 
     void OnEnable()

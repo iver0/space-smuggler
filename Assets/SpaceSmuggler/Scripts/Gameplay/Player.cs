@@ -1,44 +1,32 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] PlayerData _playerData;
-    InputActions _input;
-    public static InputAction Move;
-    public static InputAction Look;
-    public static InputAction Pause;
+    [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField] PlayerDataSO _playerData = default;
+    Rigidbody2D _rb;
     Vector2 _moveDirection;
     Vector2 _mousePosition;
-    Rigidbody2D _rb;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _input = new InputActions();
     }
 
     void OnEnable()
     {
-        Move = _input.Player.Move;
-        Move.Enable();
-        Look = _input.Player.Look;
-        Look.Enable();
-        Pause = _input.Player.Pause;
-        Pause.Enable();
+        _inputReader.MoveEvent += OnMove;
+        _inputReader.LookEvent += OnLook;
+        _inputReader.AttackEvent += OnAttack;
+        _inputReader.AttackCanceledEvent += OnAttackCanceled;
     }
 
     void OnDisable()
     {
-        Move.Disable();
-        Look.Disable();
-        Pause.Disable();
-    }
-
-    void Update()
-    {
-        _moveDirection = Move.ReadValue<Vector2>();
-        _mousePosition = Camera.main.ScreenToWorldPoint(Look.ReadValue<Vector2>());
+        _inputReader.MoveEvent -= OnMove;
+        _inputReader.LookEvent -= OnLook;
+        _inputReader.AttackEvent -= OnAttack;
+        _inputReader.AttackCanceledEvent -= OnAttackCanceled;
     }
 
     void FixedUpdate()
@@ -48,5 +36,26 @@ public class Player : MonoBehaviour
         Vector2 aimDirection = _mousePosition - _rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         _rb.rotation = aimAngle;
+    }
+
+    // Event listeners
+    void OnMove(Vector2 move)
+    {
+        _moveDirection = move;
+    }
+
+    void OnLook(Vector2 look)
+    {
+        _mousePosition = Camera.main.ScreenToWorldPoint(look);
+    }
+
+    void OnAttack()
+    {
+        Debug.Log("Attack");
+    }
+
+    void OnAttackCanceled()
+    {
+        Debug.Log("AttackCanceled");
     }
 }

@@ -3,7 +3,7 @@ using TMPro;
 
 public class ArmorBar : MonoBehaviour
 {
-    [SerializeField] PlayerData _playerData;
+    [SerializeField] PlayerDataSO _playerData;
     TextMeshProUGUI _armorText;
 
     void Awake()
@@ -13,12 +13,12 @@ public class ArmorBar : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerData.ArmorChanged += RenderArmor;
+        PlayerDataSO.ArmorChanged += RenderArmor;
     }
 
     void OnDisable()
     {
-        PlayerData.ArmorChanged -= RenderArmor;
+        PlayerDataSO.ArmorChanged -= RenderArmor;
     }
 
     void RenderArmor()
