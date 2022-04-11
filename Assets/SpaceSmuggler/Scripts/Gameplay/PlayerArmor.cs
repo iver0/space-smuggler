@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerArmor : MonoBehaviour
 {
-    public static event Action ArmorChanged;
     public static event Action<GameObject> ItemCollected;
     [SerializeField] PlayerData _playerData;
 
@@ -34,7 +33,6 @@ public class PlayerArmor : MonoBehaviour
                 _playerData.Armor = _playerData.MaxArmor;
             }
             ItemCollected?.Invoke(item);
-            ArmorChanged?.Invoke();
         }
     }
 

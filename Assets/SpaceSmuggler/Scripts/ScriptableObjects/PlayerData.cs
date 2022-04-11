@@ -2,24 +2,33 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class PlayerData : ScriptableObject
+public class PlayerData : ScriptableObject, ISerializationCallbackReceiver
 {
-    int _initHealth = 100;
-    int _initArmor = 100;
-    float _initMoveSpeed = 5f;
+    public static event Action HealthChanged;
+    public static event Action ArmorChanged;
 
-    public int MaxHealth;
-    [SerializeField] public int Health;
-    public int MaxArmor;
-    [SerializeField] public int Armor;
-    public float MoveSpeed;
+    [SerializeField] int m_MaxHealth;
+    [SerializeField] int m_Health;
+    [SerializeField] int m_MaxArmor;
+    [SerializeField] int m_Armor;
+    [SerializeField] float m_MoveSpeed;
 
-    void Awake()
+    [NonSerialized] public int MaxHealth;
+    [NonSerialized] int _health;
+    public int Health { get { return _health; } set { HealthChanged?.Invoke(); _health = value; } }
+    [NonSerialized] public int MaxArmor;
+    [NonSerialized] int _armor;
+    public int Armor { get { return _armor; } set { ArmorChanged?.Invoke(); _armor = value; } }
+    [NonSerialized] public float MoveSpeed;
+
+    public void OnAfterDeserialize()
     {
-        MaxHealth = _initHealth;
-        Health = MaxHealth;
-        MaxArmor = _initArmor;
-        Armor = 0;
-        MoveSpeed = _initMoveSpeed;
+        MaxHealth = m_MaxHealth;
+        Health = m_Health;
+        MaxArmor = m_MaxArmor;
+        Armor = m_Armor;
+        MoveSpeed = m_MoveSpeed;
     }
+
+    public void OnBeforeSerialize() { }
 }

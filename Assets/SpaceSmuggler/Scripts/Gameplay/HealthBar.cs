@@ -3,26 +3,26 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] PlayerData playerData;
-    TextMeshProUGUI healthText;
+    [SerializeField] PlayerData _playerData;
+    TextMeshProUGUI _healthText;
 
     void Awake()
     {
-        healthText = GetComponent<TextMeshProUGUI>();
+        _healthText = GetComponent<TextMeshProUGUI>();
     }
 
     void OnEnable()
     {
-        PlayerHealth.HealthChanged += RenderHealth;
+        PlayerData.HealthChanged += RenderHealth;
     }
 
     void OnDisable()
     {
-        PlayerHealth.HealthChanged -= RenderHealth;
+        PlayerData.HealthChanged -= RenderHealth;
     }
 
     void RenderHealth()
     {
-        healthText.text = $"Health: {playerData.Health}";
+        _healthText.text = $"Health: {_playerData.Health}";
     }
 }

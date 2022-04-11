@@ -4,13 +4,7 @@ using UnityEngine;
 public class Armor : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int> ArmorCollected;
-    [SerializeField] AudioEvent audioEvent;
-    AudioSource audioSource;
-
-    void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField] AudioEvent _audioEvent;
 
     void OnEnable()
     {
@@ -31,7 +25,12 @@ public class Armor : MonoBehaviour, ICollectible
     {
         if (GameObject.ReferenceEquals(item, gameObject))
         {
-            audioEvent.Play(audioSource);
+            // Creating a new empty GameObject so that pickup sound can play
+            gameObject.SetActive(false);
+            GameObject go = new GameObject("MedkitCollectedSFX");
+            AudioSource audioSource = go.AddComponent<AudioSource>();
+            _audioEvent.Play(audioSource);
+            Destroy(go, 1f);
             Destroy(gameObject);
         }
     }

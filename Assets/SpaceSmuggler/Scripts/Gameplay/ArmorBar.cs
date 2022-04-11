@@ -3,26 +3,26 @@ using TMPro;
 
 public class ArmorBar : MonoBehaviour
 {
-    [SerializeField] PlayerData playerData;
-    TextMeshProUGUI armorText;
+    [SerializeField] PlayerData _playerData;
+    TextMeshProUGUI _armorText;
 
     void Awake()
     {
-        armorText = GetComponent<TextMeshProUGUI>();
+        _armorText = GetComponent<TextMeshProUGUI>();
     }
 
     void OnEnable()
     {
-        PlayerArmor.ArmorChanged += RenderArmor;
+        PlayerData.ArmorChanged += RenderArmor;
     }
 
     void OnDisable()
     {
-        PlayerArmor.ArmorChanged -= RenderArmor;
+        PlayerData.ArmorChanged -= RenderArmor;
     }
 
     void RenderArmor()
     {
-        armorText.text = $"Armor: {playerData.Armor}";
+        _armorText.text = $"Armor: {_playerData.Armor}";
     }
 }

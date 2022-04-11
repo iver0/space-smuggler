@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public static event Action HealthChanged;
     public static event Action<GameObject> ItemCollected;
     [SerializeField] PlayerData _playerData;
     int _tmpMaxHealth;
@@ -34,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
                 _playerData.Health = _playerData.MaxHealth;
             }
             ItemCollected?.Invoke(item);
-            HealthChanged?.Invoke();
         }
     }
 

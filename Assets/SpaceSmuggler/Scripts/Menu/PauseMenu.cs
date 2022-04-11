@@ -4,28 +4,28 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    bool isPaused;
+    [SerializeField] GameObject _pauseMenu;
+    bool _isPaused;
 
     void Update()
     {
-        pauseMenu.SetActive(false);
+        _pauseMenu.SetActive(false);
     }
 
     void OnEnable()
     {
         
-        Player.pause.performed += PauseInput;
+        Player.Pause.performed += PauseInput;
     }
 
     void OnDisable()
     {
-        Player.pause.performed -= PauseInput;
+        Player.Pause.performed -= PauseInput;
     }
 
     void PauseInput(InputAction.CallbackContext context)
     {
-        if (isPaused)
+        if (_isPaused)
         {
             ResumeGame();
         }
@@ -37,20 +37,20 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
+        _pauseMenu.SetActive(true);
         Time.timeScale = 0f;
-        isPaused = true;
-        Player.move.Disable();
-        Player.look.Disable();
+        _isPaused = true;
+        Player.Move.Disable();
+        Player.Look.Disable();
     }
 
     public void ResumeGame()
     {
-        pauseMenu.SetActive(false);
+        _pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
-        Player.move.Enable();
-        Player.look.Enable();
+        _isPaused = false;
+        Player.Move.Enable();
+        Player.Look.Enable();
     }
 
     public void QuitGame()
