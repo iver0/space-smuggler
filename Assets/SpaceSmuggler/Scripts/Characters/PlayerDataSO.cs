@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Gameplay/PlayerData")]
 public class PlayerDataSO : ScriptableObject, ISerializationCallbackReceiver
 {
-    public static event Action HealthChanged;
-    public static event Action ArmorChanged;
+    public static event UnityAction HealthChanged;
+    public static event UnityAction ArmorChanged;
 
     [SerializeField]
     int m_MaxHealth;
