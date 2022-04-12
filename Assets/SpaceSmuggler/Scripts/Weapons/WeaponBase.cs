@@ -3,23 +3,12 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
-    [SerializeField]
-    InputReaderSO _inputReader = default;
-
-    [SerializeField]
-    WeaponSO _weapon = default;
-
-    [SerializeField]
-    GameObject _bulletPrefab;
-
-    [SerializeField]
-    Transform _bulletParent;
-
-    [SerializeField]
-    Transform _playerTransform;
-
-    [SerializeField]
-    Transform _firePoint;
+    [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField] WeaponSO _weapon = default;
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] Transform _bulletParent;
+    [SerializeField] Transform _playerTransform;
+    [SerializeField] Transform _firePoint;
     Vector2 _look;
     Vector2 _mousePosition;
     Coroutine _firingRoutine;
@@ -73,7 +62,11 @@ public class WeaponBase : MonoBehaviour
     void Stop()
     {
         if (_firingRoutine != null)
+        {
             StopCoroutine(_firingRoutine);
+            _firingRoutine = null;
+            _attackCanceled = false;
+        }
     }
 
     IEnumerator FiringRoutine()
@@ -83,8 +76,6 @@ public class WeaponBase : MonoBehaviour
             Fire();
             yield return new WaitForSeconds(_weapon.FireRate);
         } while (!_attackCanceled);
-        _firingRoutine = null;
-        _attackCanceled = false;
         Stop();
     }
 

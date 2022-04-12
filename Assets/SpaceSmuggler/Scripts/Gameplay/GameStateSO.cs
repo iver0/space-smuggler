@@ -10,11 +10,9 @@ public enum GameState
 [CreateAssetMenu(fileName = "GameState", menuName = "Gameplay/GameState")]
 public class GameStateSO : ScriptableObject
 {
-    public event UnityAction StateChangedEvent;
+    public event UnityAction GameStateChangedEvent;
     public GameState CurrentGameState => _currentGameState;
-
-    [SerializeField]
-    GameState _currentGameState = default;
+    [SerializeField] GameState _currentGameState = default;
 
     void OnEnable()
     {
@@ -31,6 +29,6 @@ public class GameStateSO : ScriptableObject
         if (newGameState == CurrentGameState)
             return;
         _currentGameState = newGameState;
-        StateChangedEvent?.Invoke();
+        GameStateChangedEvent?.Invoke();
     }
 }

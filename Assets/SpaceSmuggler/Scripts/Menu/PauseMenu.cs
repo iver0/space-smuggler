@@ -6,11 +6,8 @@ public class PauseMenu : MonoBehaviour
 {
     public static event UnityAction<GameState> ChangeGameStateEvent;
 
-    [SerializeField]
-    GameObject _pauseMenu;
-
-    [SerializeField]
-    InputReaderSO _inputReader;
+    [SerializeField] GameObject _pauseMenu;
+    [SerializeField] InputReaderSO _inputReader;
 
     void Awake()
     {

@@ -1,26 +1,23 @@
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    GameStateSO _state = default;
-
-    [SerializeField]
-    InputReaderSO _inputReader = default;
+    [SerializeField] GameStateSO _gameState = default;
+    [SerializeField] InputReaderSO _inputReader = default;
 
     void OnEnable()
     {
-        _state.StateChangedEvent += OnStateChanged;
+        _gameState.GameStateChangedEvent += OnStateChanged;
     }
 
     void OnDisable()
     {
-        _state.StateChangedEvent -= OnStateChanged;
+        _gameState.GameStateChangedEvent -= OnStateChanged;
     }
 
     public void OnStateChanged()
     {
-        switch (_state.CurrentGameState)
+        switch (_gameState.CurrentGameState)
         {
             case GameState.Play:
                 _inputReader.EnablePlayInput();
