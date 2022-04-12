@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] InputReaderSO _inputReader = default;
-    [SerializeField] PlayerDataSO _playerData = default;
+    [SerializeField]
+    InputReaderSO _inputReader = default;
+
+    [SerializeField]
+    PlayerDataSO _playerData = default;
     Rigidbody2D _rb;
+    Vector2 _look;
     Vector2 _moveDirection;
     Vector2 _mousePosition;
 
@@ -17,21 +21,25 @@ public class Player : MonoBehaviour
     {
         _inputReader.MoveEvent += OnMove;
         _inputReader.LookEvent += OnLook;
-        _inputReader.AttackEvent += OnAttack;
-        _inputReader.AttackCanceledEvent += OnAttackCanceled;
     }
 
     void OnDisable()
     {
         _inputReader.MoveEvent -= OnMove;
         _inputReader.LookEvent -= OnLook;
-        _inputReader.AttackEvent -= OnAttack;
-        _inputReader.AttackCanceledEvent -= OnAttackCanceled;
+    }
+
+    void Update()
+    {
+        _mousePosition = Camera.main.ScreenToWorldPoint(_look);
     }
 
     void FixedUpdate()
     {
-        _rb.velocity = new Vector2(_moveDirection.x * _playerData.MoveSpeed, _moveDirection.y * _playerData.MoveSpeed);
+        _rb.velocity = new Vector2(
+            _moveDirection.x * _playerData.MoveSpeed,
+            _moveDirection.y * _playerData.MoveSpeed
+        );
 
         Vector2 aimDirection = _mousePosition - _rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
@@ -46,16 +54,6 @@ public class Player : MonoBehaviour
 
     void OnLook(Vector2 look)
     {
-        _mousePosition = Camera.main.ScreenToWorldPoint(look);
-    }
-
-    void OnAttack()
-    {
-        Debug.Log("Attack");
-    }
-
-    void OnAttackCanceled()
-    {
-        Debug.Log("AttackCanceled");
+        _look = look;
     }
 }

@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSO : MonoBehaviour
+[CreateAssetMenu(fileName = "Weapon", menuName = "Gameplay/Weapon")]
+public class WeaponSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioEvent FiringSound;
+    public int Damage;
+    public bool IsAutomatic;
+    public float FireRate;
+    public float Spread;
 }
