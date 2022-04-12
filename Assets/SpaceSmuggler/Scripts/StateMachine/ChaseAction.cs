@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "ChaseAction", menuName = "AI/Actions/Chase")]
 public class ChaseAction : Action
@@ -10,7 +11,7 @@ public class ChaseAction : Action
 
     void Chase(StateController controller)
     {
-        controller.NavMeshAgent.destination = controller.PlayerTransform.position;
-        controller.NavMeshAgent.isStopped = false;
+        controller.NavMeshAgent.SetDestination(controller.PlayerTransform.position);
+        // controller.NavMeshAgent.isStopped = false;
     }
 }

@@ -17,6 +17,8 @@ public class StateController : MonoBehaviour
     public void SetupAI(bool aiActivation)
     {
         _aiActive = aiActivation;
+        NavMeshAgent.updateRotation = false;
+        NavMeshAgent.updateUpAxis = false;
         if (_aiActive)
             NavMeshAgent.enabled = true;
         else
@@ -28,5 +30,14 @@ public class StateController : MonoBehaviour
         if (!_aiActive)
             return;
         _currentState.UpdateState(this);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (_currentState != null)
+        {
+            Gizmos.color = _currentState.SceneGizmoColor;
+            Gizmos.DrawWireSphere(transform.position, _enemyStats.LookSphereCastRadius);
+        }
     }
 }

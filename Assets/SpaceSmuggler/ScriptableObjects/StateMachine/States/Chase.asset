@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actions:
   - {fileID: 11400000, guid: 0c769e5bfa7965746ad41ba506eef95a, type: 2}
+  SceneGizmoColor: {r: 0.745283, g: 0.12304199, b: 0.12304199, a: 1}
