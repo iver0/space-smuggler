@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static event UnityAction<GameState> ChangeGameStateEvent;
-    [SerializeField] GameObject _pauseMenu;
-    [SerializeField] InputReaderSO _inputReader;
+
+    [SerializeField]
+    GameObject _pauseMenu;
+
+    [SerializeField]
+    InputReaderSO _inputReader;
 
     void Awake()
     {
@@ -24,6 +28,7 @@ public class PauseMenu : MonoBehaviour
         _inputReader.PauseEvent -= OnPause;
         _inputReader.ResumeEvent -= OnResume;
     }
+
     public void QuitGame()
     {
         OnResume();

@@ -4,7 +4,9 @@ using UnityEngine;
 public class Morphine : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int, int, bool, int> MorphineCollected;
-    [SerializeField] AudioEvent _audioEvent;
+
+    [SerializeField]
+    AudioEvent _audioEvent;
 
     void OnEnable()
     {

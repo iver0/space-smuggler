@@ -12,7 +12,9 @@ public class GameStateSO : ScriptableObject
 {
     public event UnityAction StateChangedEvent;
     public GameState CurrentGameState => _currentGameState;
-    [SerializeField] GameState _currentGameState = default;
+
+    [SerializeField]
+    GameState _currentGameState = default;
 
     void OnEnable()
     {

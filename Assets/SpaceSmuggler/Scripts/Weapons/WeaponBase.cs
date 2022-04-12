@@ -10,13 +10,16 @@ public class WeaponBase : MonoBehaviour
     WeaponSO _weapon = default;
 
     [SerializeField]
-    GameObject _bulletPrefab = default;
+    GameObject _bulletPrefab;
 
     [SerializeField]
-    Transform _playerTransform = default;
+    Transform _bulletParent;
 
     [SerializeField]
-    Transform _firePoint = default;
+    Transform _playerTransform;
+
+    [SerializeField]
+    Transform _firePoint;
     Vector2 _look;
     Vector2 _mousePosition;
     Coroutine _firingRoutine;
@@ -48,7 +51,12 @@ public class WeaponBase : MonoBehaviour
         _weapon.FiringSound.Play(audioSource);
 
         // Create a bullet particle
-        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        GameObject bullet = Instantiate(
+            _bulletPrefab,
+            _firePoint.position,
+            _firePoint.rotation,
+            _bulletParent
+        );
         bullet
             .GetComponent<Rigidbody2D>()
             .AddForce(_firePoint.up * Random.Range(49f, 50f), ForceMode2D.Impulse);

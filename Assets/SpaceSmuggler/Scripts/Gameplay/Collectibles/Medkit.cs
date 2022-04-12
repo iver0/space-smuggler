@@ -4,7 +4,9 @@ using UnityEngine;
 public class Medkit : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int> MedkitCollected;
-    [SerializeField] AudioEvent _audioEvent;
+
+    [SerializeField]
+    AudioEvent _audioEvent;
 
     void OnEnable()
     {

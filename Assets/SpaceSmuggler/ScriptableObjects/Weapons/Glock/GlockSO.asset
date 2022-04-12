@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf64a5749d326164fbb6c92b888fe4f8, type: 3}
   m_Name: GlockSO
   m_EditorClassIdentifier: 
-  FiringSound: {fileID: 0}
+  FiringSound: {fileID: 11400000, guid: e04f409ab6bc6b64aa6c1c959b8ab2de, type: 2}
   Damage: 20
   IsAutomatic: 0
-  FireRate: 5
+  FireRate: 0.1
   Spread: 0

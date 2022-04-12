@@ -4,7 +4,9 @@ using UnityEngine;
 public class Armor : MonoBehaviour, ICollectible
 {
     public static event Action<GameObject, int> ArmorCollected;
-    [SerializeField] AudioEvent _audioEvent;
+
+    [SerializeField]
+    AudioEvent _audioEvent;
 
     void OnEnable()
     {

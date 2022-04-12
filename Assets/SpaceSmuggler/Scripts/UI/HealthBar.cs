@@ -1,14 +1,16 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] PlayerDataSO _playerData;
+    [SerializeField]
+    PlayerDataSO _playerData;
     TextMeshProUGUI _healthText;
 
     void Awake()
     {
         _healthText = GetComponent<TextMeshProUGUI>();
+        RenderHealth();
     }
 
     void OnEnable()

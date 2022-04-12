@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    [SerializeField] GameStateSO _state = default;
-    [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField]
+    GameStateSO _state = default;
+
+    [SerializeField]
+    InputReaderSO _inputReader = default;
 
     void OnEnable()
     {

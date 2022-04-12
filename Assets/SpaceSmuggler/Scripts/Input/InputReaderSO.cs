@@ -3,7 +3,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Gameplay/InputReader")]
-public class InputReaderSO : ScriptableObject, InputActions.IPlayerActions, InputActions.IPauseActions
+public class InputReaderSO
+    : ScriptableObject,
+      InputActions.IPlayerActions,
+      InputActions.IPauseActions
 {
     public event UnityAction<Vector2> MoveEvent;
     public event UnityAction<Vector2> LookEvent;
@@ -65,16 +68,16 @@ public class InputReaderSO : ScriptableObject, InputActions.IPlayerActions, Inpu
     }
 
     public void EnablePlayInput()
-	{
-		_input.Player.Enable();
-		_input.Pause.Disable();
-	}
+    {
+        _input.Player.Enable();
+        _input.Pause.Disable();
+    }
 
-	public void EnablePauseInput()
-	{
-		_input.Player.Disable();
-		_input.Pause.Enable();
-	}
+    public void EnablePauseInput()
+    {
+        _input.Player.Disable();
+        _input.Pause.Enable();
+    }
 
     public void DisableInput()
     {

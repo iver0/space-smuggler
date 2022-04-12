@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
   m_Name: GlockFiringSound
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 60bb8b15897c45a468d325f1e4a12074, type: 3}
   volume:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.4472843
+    maxValue: 0.54603547
   pitch:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.68719107
+    maxValue: 1.1983736
