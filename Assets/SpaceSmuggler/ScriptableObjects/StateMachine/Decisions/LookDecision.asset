@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded670ae0a007754fa72df52c961a210, type: 3}
-  m_Name: ZombieStats
+  m_Script: {fileID: 11500000, guid: 64013b3347c2a43469bd3df9980f8636, type: 3}
+  m_Name: LookDecision
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
-  AttackRange: 1
-  AttackRate: 1
-  AttackForce: 15
-  AttackDamage: 50
-  LookSphereCastRadius: 3
-  LookRange: 20
