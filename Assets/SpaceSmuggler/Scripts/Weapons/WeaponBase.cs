@@ -7,8 +7,8 @@ public class WeaponBase : MonoBehaviour
 	[SerializeField] WeaponSO _weapon = default;
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _bulletParent;
-	[SerializeField] Transform _playerTransform;
 	[SerializeField] Transform _firePoint;
+	Transform _player;
 	Vector2 _look;
 	Vector2 _mousePosition;
 	Coroutine _firingRoutine;
@@ -16,6 +16,8 @@ public class WeaponBase : MonoBehaviour
 
 	void OnEnable()
 	{
+		_player = transform.parent.transform.parent.transform;
+
 		_inputReader.LookEvent += OnLook;
 		_inputReader.AttackEvent += OnAttack;
 		_inputReader.AttackCanceledEvent += OnAttackCanceled;
@@ -51,12 +53,9 @@ public class WeaponBase : MonoBehaviour
 			.AddForce(_firePoint.up * Random.Range(49f, 50f), ForceMode2D.Impulse);
 
 		// Check for hit
-		RaycastHit2D hit = Physics2D.Raycast(_playerTransform.position, _mousePosition);
-		if (hit)
-		{
-			if (hit.transform.TryGetComponent<Target>(out var target))
-				target.TakeDamage(_weapon.Damage);
-		}
+		RaycastHit2D hit = Physics2D.Raycast(_player.position, _mousePosition);
+		if (hit && hit.transform.TryGetComponent<Target>(out var target))
+			target.TakeDamage(_weapon.Damage);
 	}
 
 	void Stop()

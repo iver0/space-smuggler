@@ -46,6 +46,5 @@ public class StateController : MonoBehaviour
 	{
 		if (nextState != _remainState)
 			_currentState = nextState;
-
 	}
 }

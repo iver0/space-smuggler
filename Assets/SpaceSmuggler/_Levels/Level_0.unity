@@ -42526,6 +42526,10 @@ PrefabInstance:
       value: Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 7208977756155465846, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: _remainState
+      value: 
+      objectReference: {fileID: 11400000, guid: 60b2ca5999455624faea78176ce1fe75, type: 2}
+    - target: {fileID: 7208977756155465846, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
       propertyPath: PlayerTransform
       value: 
       objectReference: {fileID: 1605592372}

@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 605b08547e8a646468d6a0b67bfd9432, type: 3}
-  m_Name: Chase
+  m_Name: IdleState
   m_EditorClassIdentifier: 
-  Actions:
-  - {fileID: 11400000, guid: 0c769e5bfa7965746ad41ba506eef95a, type: 2}
-  Transitions:
-  - Decision: {fileID: 11400000, guid: 7dc64554f6cd0c743bc6228f15a965fc, type: 2}
-    TrueState: {fileID: 0}
-    FalseState: {fileID: 0}
-  SceneGizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  Actions: []
+  Transitions: []
+  SceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
