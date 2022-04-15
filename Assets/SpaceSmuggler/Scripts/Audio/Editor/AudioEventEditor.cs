@@ -1,16 +1,15 @@
-using UnityEngine;
-using System.Collections;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(AudioEvent), true)]
+[CustomEditor(typeof(AudioEventSO), true)]
 public class AudioEventEditor : Editor
 {
-
-	[SerializeField] private AudioSource _previewer;
+	[SerializeField] AudioSource _previewer;
 
 	public void OnEnable()
 	{
 		_previewer = EditorUtility.CreateGameObjectWithHideFlags("Audio preview", HideFlags.HideAndDontSave, typeof(AudioSource)).GetComponent<AudioSource>();
+		((AudioEventSO)target).Source = _previewer;
 	}
 
 	public void OnDisable()
@@ -24,9 +23,7 @@ public class AudioEventEditor : Editor
 
 		EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
 		if (GUILayout.Button("Preview"))
-		{
-			((AudioEvent) target).Play(_previewer);
-		}
+			((AudioEventSO)target).Play();
 		EditorGUI.EndDisabledGroup();
 	}
 }

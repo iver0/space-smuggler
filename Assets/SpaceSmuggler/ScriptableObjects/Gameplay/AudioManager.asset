@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
-  m_Name: MoyaHuinya
+  m_Script: {fileID: 11500000, guid: ac2c48d98a71f974997ae7e5199118c7, type: 3}
+  m_Name: AudioManager
   m_EditorClassIdentifier: 
-  clips: []
-  volume:
-    minValue: 0
-    maxValue: 0
-  pitch:
-    minValue: 0
-    maxValue: 0
+  _SFXEventChannel: {fileID: 11400000, guid: 957fc7cc039b4f84e9205fbc158679f7, type: 2}
+  Source: {fileID: 0}

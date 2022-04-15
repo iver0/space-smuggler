@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
   m_Name: ArmorCollected
   m_EditorClassIdentifier: 
-  clips:
+  Clips:
   - {fileID: 8300000, guid: 71489b80e3ec62f4697dc5ed7861fed8, type: 3}
-  volume:
-    minValue: 0.09843659
-    maxValue: 0.19687316
-  pitch:
-    minValue: 0.79907334
-    maxValue: 1.297046
+  Volume:
+    minValue: 0.100972846
+    maxValue: 0.20161022
+  Pitch:
+    minValue: 0
+    maxValue: 0.33545792
+  _SFXEventChannel: {fileID: 11400000, guid: 957fc7cc039b4f84e9205fbc158679f7, type: 2}
+  Source: {fileID: 0}

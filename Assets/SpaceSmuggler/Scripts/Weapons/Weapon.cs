@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
 	[SerializeField] InputReaderSO _inputReader = default;
-	[SerializeField] WeaponSO _weapon = default;
+	[SerializeField] WeaponStatsSO _weapon = default;
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _bulletParent;
 	[SerializeField] Transform _firePoint;
@@ -37,9 +37,7 @@ public class WeaponBase : MonoBehaviour
 
 	void Fire()
 	{
-		// Play the firing sound
-		AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-		_weapon.FiringSound.Play(audioSource);
+		_weapon.FiringSound.Play();
 
 		// Create a bullet particle
 		GameObject bullet = Instantiate(

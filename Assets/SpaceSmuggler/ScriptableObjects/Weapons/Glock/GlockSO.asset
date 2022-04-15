@@ -16,4 +16,4 @@ MonoBehaviour:
   Damage: 20
   IsAutomatic: 0
   FireRate: 0.1
-  Spread: 0
+  Spread: 0.1

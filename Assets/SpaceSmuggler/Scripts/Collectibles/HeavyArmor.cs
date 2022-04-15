@@ -4,7 +4,7 @@ using UnityEngine;
 public class HeavyArmor : MonoBehaviour, ICollectible
 {
 	public static event Action<GameObject, int, int> HeavyArmorCollected;
-	[SerializeField] AudioEvent _audioEvent;
+	[SerializeField] AudioEventSO _audioEvent;
 
 	void OnEnable()
 	{
@@ -23,14 +23,9 @@ public class HeavyArmor : MonoBehaviour, ICollectible
 
 	public void OnItemCollected(GameObject item)
 	{
-		if (GameObject.ReferenceEquals(item, gameObject))
+		if (ReferenceEquals(item, gameObject))
 		{
-			// Creating a new empty GameObject so that pickup sound can play
-			gameObject.SetActive(false);
-			GameObject go = new("HeavyArmorCollectedSFX");
-			AudioSource audioSource = go.AddComponent<AudioSource>();
-			_audioEvent.Play(audioSource);
-			Destroy(go, 1f);
+			_audioEvent.Play();
 			Destroy(gameObject);
 		}
 	}

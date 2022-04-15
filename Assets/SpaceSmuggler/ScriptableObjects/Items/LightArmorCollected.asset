@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
   m_Name: LightArmorCollected
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: e9dc72e4414a4d94284583af6b2a5170, type: 3}
-  volume:
-    minValue: 0.10422698
-    maxValue: 0.20266354
-  pitch:
-    minValue: 0.79559934
-    maxValue: 1.2009255
+  Clips: []
+  Volume:
+    minValue: 0
+    maxValue: 0
+  Pitch:
+    minValue: 0
+    maxValue: 0
+  _SFXEventChannel: {fileID: 11400000, guid: 957fc7cc039b4f84e9205fbc158679f7, type: 2}
