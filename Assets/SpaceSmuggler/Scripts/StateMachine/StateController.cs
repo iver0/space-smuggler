@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class StateController : MonoBehaviour
 {
-	[SerializeField] State _currentState;
-	[SerializeField] State _remainState;
+	[SerializeField] State _currentState = default;
+	[SerializeField] State _remainState = default;
 	public Enemy Enemy;
 	public EnemyStats EnemyStats;
 	public Transform PlayerTransform;

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "ChaseAction", menuName = "AI/Actions/Chase")]
 public class ChaseAction : Action
