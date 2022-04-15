@@ -5,9 +5,11 @@ public class StateController : MonoBehaviour
 {
 	[SerializeField] State _currentState;
 	[SerializeField] State _remainState;
+	public Enemy Enemy;
 	public EnemyStats EnemyStats;
 	public Transform PlayerTransform;
 	[HideInInspector] public NavMeshAgent NavMeshAgent;
+	[HideInInspector] public float StateTimeElapsed;
 	bool _aiActive;
 
 	void Awake()
@@ -45,6 +47,20 @@ public class StateController : MonoBehaviour
 	public void TransitionToState(State nextState)
 	{
 		if (nextState != _remainState)
+		{
 			_currentState = nextState;
+			OnExitState();
+		}
+	}
+
+	public bool CheckIfCountDownElapsed(float duration)
+	{
+		StateTimeElapsed += Time.deltaTime;
+		return StateTimeElapsed >= duration;
+	}
+
+	void OnExitState()
+	{
+		StateTimeElapsed = 0f;
 	}
 }

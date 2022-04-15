@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackAction : MonoBehaviour
+[CreateAssetMenu(fileName = "AttackAction", menuName = "AI/Actions/Attack")]
+public class AttackAction : Action
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public override void Act(StateController controller)
+	{
+		Attack(controller);
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Attack(StateController controller)
+	{
+		if (controller.CheckIfCountDownElapsed(controller.EnemyStats.AttackRate))
+		{
+			controller.Enemy.Attack(controller.EnemyStats.AttackDamage);
+		}
+	}
 }
