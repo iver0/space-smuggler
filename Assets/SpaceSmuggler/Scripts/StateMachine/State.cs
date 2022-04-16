@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/State")]
 public class State : ScriptableObject
 {
-	public Action[] Actions;
+	public Actions[] Actions;
 	public Transition[] Transitions;
 	public Color SceneGizmoColor = Color.grey;
 

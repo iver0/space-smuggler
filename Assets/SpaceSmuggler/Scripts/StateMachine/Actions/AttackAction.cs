@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackAction", menuName = "AI/Actions/Attack")]
-public class AttackAction : Action
+public class AttackAction : Actions
 {
 	public override void Act(StateController controller)
 	{
@@ -10,9 +10,9 @@ public class AttackAction : Action
 
 	void Attack(StateController controller)
 	{
-		if (controller.CheckIfCountDownElapsed(controller.EnemyStats.AttackRate))
+		if (controller.CheckIfCountDownElapsed(controller.BotStats.AttackRate))
 		{
-			controller.Enemy.Attack(controller.EnemyStats.AttackDamage);
+			controller.Bot.Attack(controller.BotStats.AttackDamage);
 		}
 	}
 }

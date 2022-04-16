@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Morphine : MonoBehaviour, ICollectible
 {
-	public static event Action<GameObject, int, int, bool, int> MorphineCollected;
+	public static event Action<GameObject, int, int, int> MorphineCollected;
 	[SerializeField] AudioEventSO _audioEvent;
 
 	void OnEnable()
@@ -18,7 +18,7 @@ public class Morphine : MonoBehaviour, ICollectible
 
 	public void Collect()
 	{
-		MorphineCollected?.Invoke(gameObject, 25, 125, true, 60);
+		MorphineCollected?.Invoke(gameObject, 25, 125, 60);
 	}
 
 	public void OnItemCollected(GameObject item)

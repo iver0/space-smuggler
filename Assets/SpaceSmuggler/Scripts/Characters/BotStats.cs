@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/EnemyStats")]
-public class EnemyStats : ScriptableObject
+[CreateAssetMenu(fileName = "BotStats", menuName = "AI/Stats")]
+public class BotStats : ScriptableObject
 {
 	public float MoveSpeed = 3f;
 	public float AttackRange = 1f;

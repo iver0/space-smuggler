@@ -5,16 +5,25 @@ public class StateController : MonoBehaviour
 {
 	[SerializeField] State _currentState = default;
 	[SerializeField] State _remainState = default;
-	public Enemy Enemy;
-	public EnemyStats EnemyStats;
+	[SerializeField] State _idleState = default;
+	public IBot Bot;
+	public BotStats BotStats;
 	public Transform PlayerTransform;
+	[Header("Listening on")]
+	[SerializeField] VoidEventChannelSO _playerDeathEventChannel = default;
 	[HideInInspector] public NavMeshAgent NavMeshAgent;
 	[HideInInspector] public float StateTimeElapsed;
 	bool _aiActive;
 
-	void Awake()
+	void OnEnable()
 	{
 		NavMeshAgent = GetComponent<NavMeshAgent>();
+		_playerDeathEventChannel.OnEventRaised += PlayerDeath;
+	}
+
+	void OnDisable()
+	{
+		_playerDeathEventChannel.OnEventRaised -= PlayerDeath;
 	}
 
 	public void SetupAI(bool aiActivation)
@@ -40,7 +49,7 @@ public class StateController : MonoBehaviour
 		if (_currentState != null)
 		{
 			Gizmos.color = _currentState.SceneGizmoColor;
-			Gizmos.DrawWireSphere(transform.position, EnemyStats.LookSphereCastRadius);
+			Gizmos.DrawWireSphere(transform.position, BotStats.LookSphereCastRadius);
 		}
 	}
 
@@ -62,5 +71,10 @@ public class StateController : MonoBehaviour
 	void OnExitState()
 	{
 		StateTimeElapsed = 0f;
+	}
+
+	void PlayerDeath()
+	{
+		TransitionToState(_idleState);
 	}
 }

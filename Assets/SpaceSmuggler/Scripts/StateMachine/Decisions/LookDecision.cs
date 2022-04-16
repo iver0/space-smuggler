@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LookDecision", menuName = "AI/Decisions/Look")]
-public class LookDecision : Decision
+public class LookDecision : Decisions
 {
 	public override bool Decide(StateController controller)
 	{
@@ -11,9 +11,9 @@ public class LookDecision : Decision
 
 	bool Look(StateController controller)
 	{
-		RaycastHit2D hit = Physics2D.CircleCast(controller.transform.position, controller.EnemyStats.LookSphereCastRadius, controller.transform.forward, controller.EnemyStats.AttackRange);
+		RaycastHit2D hit = Physics2D.CircleCast(controller.transform.position, controller.BotStats.LookSphereCastRadius, controller.transform.forward, controller.BotStats.AttackRange);
 
-		Debug.DrawRay(controller.transform.position, controller.transform.forward.normalized * controller.EnemyStats.AttackRange, Color.green);
+		Debug.DrawRay(controller.transform.position, controller.transform.forward.normalized * controller.BotStats.AttackRange, Color.green);
 
 		return hit && hit.collider.CompareTag("Player");
 	}

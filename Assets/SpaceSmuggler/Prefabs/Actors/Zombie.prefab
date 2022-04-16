@@ -312,9 +312,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentState: {fileID: 11400000, guid: 6543aed8a70a82c43a33cb612fed854e, type: 2}
   _remainState: {fileID: 11400000, guid: 60b2ca5999455624faea78176ce1fe75, type: 2}
-  Enemy: {fileID: 0}
-  EnemyStats: {fileID: 11400000, guid: 58e75fbdb0df7234ba98ed93f489b9b3, type: 2}
+  _idleState: {fileID: 11400000, guid: 557ea3fd4624a0f48ba6daed469f8063, type: 2}
+  BotStats: {fileID: 11400000, guid: 58e75fbdb0df7234ba98ed93f489b9b3, type: 2}
   PlayerTransform: {fileID: 0}
+  _playerDeathEventChannel: {fileID: 11400000, guid: c868404c70bcb5446adede929e14423a, type: 2}
   NavMeshAgent: {fileID: 0}
   StateTimeElapsed: 0
 --- !u!1 &5878867534855718791

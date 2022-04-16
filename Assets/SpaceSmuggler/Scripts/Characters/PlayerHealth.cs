@@ -8,21 +8,20 @@ public class PlayerHealth : MonoBehaviour
 	public static UnityAction<GameObject> ItemCollected;
 	[Header("Broadcasting on")]
 	[SerializeField] VoidEventChannelSO _playerDeathChannel = default;
-	int _tmpMaxHealth;
 
 	void OnEnable()
 	{
-		Medkit.MedkitCollected += OnItemCollected;
-		Morphine.MorphineCollected += OnItemCollected;
+		Medkit.MedkitCollected += CollectHealth;
+		Morphine.MorphineCollected += CollectHealth;
 	}
 
 	void OnDisable()
 	{
-		Medkit.MedkitCollected -= OnItemCollected;
-		Morphine.MorphineCollected -= OnItemCollected;
+		Medkit.MedkitCollected -= CollectHealth;
+		Morphine.MorphineCollected -= CollectHealth;
 	}
 
-	void OnItemCollected(GameObject item, int value)
+	void CollectHealth(GameObject item, int value)
 	{
 		if (_playerData.Health != _playerData.MaxHealth)
 		{
@@ -38,25 +37,22 @@ public class PlayerHealth : MonoBehaviour
 		}
 	}
 
-	void OnItemCollected(GameObject item, int value, int maxValue)
+	void CollectHealth(GameObject item, int value, int maxValue)
 	{
 		_playerData.MaxHealth = maxValue;
-		OnItemCollected(item, value);
+		CollectHealth(item, value);
 	}
 
-	void OnItemCollected(GameObject item, int value, int maxValue, bool isTmp, int duration)
+	void CollectHealth(GameObject item, int value, int maxValue, int duration)
 	{
-		if (isTmp)
-		{
-			_tmpMaxHealth = _playerData.MaxHealth;
-			StartCoroutine(FadeEffect(duration));
-		}
-		OnItemCollected(item, value, maxValue);
+		int tmp = _playerData.MaxHealth;
+		StartCoroutine(FadeEffect(duration, tmp));
+		CollectHealth(item, value, maxValue);
 	}
 
-	IEnumerator FadeEffect(int duration)
+	IEnumerator FadeEffect(int duration, int maxHealth)
 	{
 		yield return new WaitForSeconds(duration);
-		OnItemCollected(gameObject, 0, _tmpMaxHealth);
+		CollectHealth(gameObject, 0, maxHealth);
 	}
 }
