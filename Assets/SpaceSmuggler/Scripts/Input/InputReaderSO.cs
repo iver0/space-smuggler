@@ -8,12 +8,12 @@ public class InputReaderSO
 	  InputActions.IPlayerActions,
 	  InputActions.IPauseActions
 {
-	public event Action<Vector2> MoveEvent;
-	public event Action<Vector2> LookEvent;
-	public event System.Action AttackEvent;
-	public event System.Action AttackCanceledEvent;
-	public event System.Action PauseEvent;
-	public event System.Action ResumeEvent;
+	public Action<Vector2> MoveEvent;
+	public Action<Vector2> LookEvent;
+	public Action AttackEvent;
+	public Action AttackCanceledEvent;
+	public Action PauseEvent;
+	public Action ResumeEvent;
 	InputActions _input;
 
 	void OnEnable()

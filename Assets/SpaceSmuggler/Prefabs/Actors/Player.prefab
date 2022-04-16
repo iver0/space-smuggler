@@ -298,10 +298,10 @@ GameObject:
   - component: {fileID: 7917539208883464286}
   - component: {fileID: 7917539208883464287}
   - component: {fileID: 7917539208883464274}
-  - component: {fileID: 7917539208883464285}
+  - component: {fileID: 7917539210197372274}
   - component: {fileID: 7917539210197372269}
   - component: {fileID: 7917539210197372268}
-  - component: {fileID: 7917539210197372274}
+  - component: {fileID: 7917539208883464285}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -364,7 +364,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7917539208883464285
+--- !u!114 &7917539210197372274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,11 +373,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7917539208883464281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e814e5d2bb7c65b46a327cc37c40a4b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 512ff7d2d8c54d941b64ad4aeb689232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 11400000, guid: 8b25545ada142d8478e3233633546bea, type: 2}
-  _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
 --- !u!114 &7917539210197372269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,8 +402,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
-  _playerDeathChannel: {fileID: 11400000, guid: c868404c70bcb5446adede929e14423a, type: 2}
---- !u!114 &7917539210197372274
+  _healthChangedEventChannel: {fileID: 11400000, guid: e1a26bb62bd4bd64e82b9fe4f2fda5bc, type: 2}
+  _playerDeathEventChannel: {fileID: 11400000, guid: c868404c70bcb5446adede929e14423a, type: 2}
+--- !u!114 &7917539208883464285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,9 +413,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7917539208883464281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512ff7d2d8c54d941b64ad4aeb689232, type: 3}
+  m_Script: {fileID: 11500000, guid: e814e5d2bb7c65b46a327cc37c40a4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 8b25545ada142d8478e3233633546bea, type: 2}
+  _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
 --- !u!1 &7917539210253555724
 GameObject:
   m_ObjectHideFlags: 0

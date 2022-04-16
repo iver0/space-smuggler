@@ -46,8 +46,6 @@ public class Player : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		_playerData.Health -= damage;
-		//if (_playerData.Health <= 0)
-
 	}
 
 	// Event listeners

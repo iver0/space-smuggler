@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
 	[SerializeField] PlayerDataSO _playerData = default;
-	public static UnityAction<GameObject> ItemCollected;
-	[Header("Broadcasting on")]
-	[SerializeField] VoidEventChannelSO _playerDeathChannel = default;
+	public static Action<GameObject> ItemCollected;
+
 
 	void OnEnable()
 	{

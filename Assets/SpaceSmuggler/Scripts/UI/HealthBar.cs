@@ -3,28 +3,25 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField]
-    PlayerDataSO _playerData;
-    TextMeshProUGUI _healthText;
+	[Header("Listening on")]
+	[SerializeField] IntEventChannelSO _healthChangedEventChannel = default;
+	TextMeshProUGUI _healthText;
 
-    void Awake()
-    {
-        _healthText = GetComponent<TextMeshProUGUI>();
-        RenderHealth();
-    }
+	void OnEnable()
+	{
+		_healthText = GetComponent<TextMeshProUGUI>();
+		RenderHealth(100);
 
-    void OnEnable()
-    {
-        PlayerDataSO.HealthChanged += RenderHealth;
-    }
+		_healthChangedEventChannel.OnEventRaised += RenderHealth;
+	}
 
-    void OnDisable()
-    {
-        PlayerDataSO.HealthChanged -= RenderHealth;
-    }
+	void OnDisable()
+	{
+		_healthChangedEventChannel.OnEventRaised -= RenderHealth;
+	}
 
-    void RenderHealth()
-    {
-        _healthText.text = $"Health: {_playerData.Health}";
-    }
+	void RenderHealth(int health)
+	{
+		_healthText.text = $"Health: {health}";
+	}
 }
