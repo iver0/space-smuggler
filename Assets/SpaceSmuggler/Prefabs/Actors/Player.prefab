@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 7917539208883464274}
   - component: {fileID: 7917539210197372274}
   - component: {fileID: 7917539210197372269}
-  - component: {fileID: 7917539210197372268}
   - component: {fileID: 7917539208883464285}
   m_Layer: 0
   m_Name: Player
@@ -389,21 +388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
---- !u!114 &7917539210197372268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7917539208883464281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a830e50725c0484682eda744c5a60a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
-  _healthChangedEventChannel: {fileID: 11400000, guid: e1a26bb62bd4bd64e82b9fe4f2fda5bc, type: 2}
-  _playerDeathEventChannel: {fileID: 11400000, guid: c868404c70bcb5446adede929e14423a, type: 2}
 --- !u!114 &7917539208883464285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,8 +400,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e814e5d2bb7c65b46a327cc37c40a4b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: {fileID: 11400000, guid: ba40c8dbefe378e4ebd8bb1afe70cf32, type: 2}
   _inputReader: {fileID: 11400000, guid: 8b25545ada142d8478e3233633546bea, type: 2}
   _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}
+  _healthItemEvent: {fileID: 11400000, guid: 34367336cda7e5d49a8596ca9aaf6fdb, type: 2}
 --- !u!1 &7917539210253555724
 GameObject:
   m_ObjectHideFlags: 0

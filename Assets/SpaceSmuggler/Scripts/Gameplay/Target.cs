@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class Target : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[SerializeField] TargetDataSO _targetData;
-
-	public void TakeDamage(int damage)
+	public class Target : MonoBehaviour
 	{
-		_targetData.Health -= damage;
-		if (_targetData.Health < 0)
+		[SerializeField] TargetDataSO _targetData;
+
+		public void TakeDamage(int damage)
 		{
-			Destroy(gameObject);
+			_targetData.Health -= damage;
+			if (_targetData.Health < 0)
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

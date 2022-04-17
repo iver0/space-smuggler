@@ -1,25 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class VoidEventListener : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[SerializeField] VoidEventChannelSO _channel = default;
-	public UnityEvent OnEventRaised;
-
-	void OnEnable()
+	public class VoidEventListener : MonoBehaviour
 	{
-		if (_channel != null)
-			_channel.OnEventRaised += Respond;
-	}
+		[SerializeField] VoidEventChannelSO _channel = default;
+		public UnityEvent OnEventRaised;
 
-	void OnDisable()
-	{
-		if (_channel != null)
-			_channel.OnEventRaised -= Respond;
-	}
+		void OnEnable()
+		{
+			if (_channel != null)
+				_channel.OnEventRaised += Respond;
+		}
 
-	void Respond()
-	{
-		OnEventRaised?.Invoke();
+		void OnDisable()
+		{
+			if (_channel != null)
+				_channel.OnEventRaised -= Respond;
+		}
+
+		void Respond()
+		{
+			OnEventRaised?.Invoke();
+		}
 	}
 }

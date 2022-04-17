@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace SpaceSmuggler
 {
-	public void PlayGame()
+	public class MainMenu : MonoBehaviour
 	{
-		SceneManager.LoadScene("Level_0");
-	}
+		public void PlayGame()
+		{
+			SceneManager.LoadScene("Level_0");
+		}
 
-	public void QuitGame()
-	{
-		Application.Quit();
+		public void QuitGame()
+		{
+			Application.Quit();
+		}
 	}
 }

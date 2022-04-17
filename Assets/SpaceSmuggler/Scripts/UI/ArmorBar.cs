@@ -1,30 +1,32 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class ArmorBar : MonoBehaviour
+namespace SpaceSmuggler
 {
-    [SerializeField]
-    PlayerDataSO _playerData;
-    TextMeshProUGUI _armorText;
+	public class ArmorBar : MonoBehaviour
+	{
+		[SerializeField] PlayerDataSO _playerData;
+		TextMeshProUGUI _armorText;
 
-    void Awake()
-    {
-        _armorText = GetComponent<TextMeshProUGUI>();
-        RenderArmor();
-    }
+		void Awake()
+		{
+			_armorText = GetComponent<TextMeshProUGUI>();
+			RenderArmor();
+		}
 
-    void OnEnable()
-    {
-        PlayerDataSO.ArmorChanged += RenderArmor;
-    }
+		void OnEnable()
+		{
+			PlayerDataSO.ArmorChanged += RenderArmor;
+		}
 
-    void OnDisable()
-    {
-        PlayerDataSO.ArmorChanged -= RenderArmor;
-    }
+		void OnDisable()
+		{
+			PlayerDataSO.ArmorChanged -= RenderArmor;
+		}
 
-    void RenderArmor()
-    {
-        _armorText.text = $"Armor: {_playerData.Armor}";
-    }
+		void RenderArmor()
+		{
+			_armorText.text = $"Armor: {_playerData.Armor}";
+		}
+	}
 }

@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class Collector : MonoBehaviour
+namespace SpaceSmuggler
 {
-	void OnTriggerEnter2D(Collider2D collision)
+	public class Collector : MonoBehaviour
 	{
-		var collectible = collision.GetComponent<ICollectible>();
-		collectible?.Collect();
+		void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (collision.TryGetComponent<Item>(out var item))
+				item.Collect();
+		}
 	}
 }

@@ -1,13 +1,16 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "VoidEvent_Channel", menuName = "Events/Void Event Channel")]
-public class VoidEventChannelSO : ScriptableObject
+namespace SpaceSmuggler
 {
-	public event Action OnEventRaised;
-
-	public void RaiseEvent()
+	[CreateAssetMenu(fileName = "VoidEvent_Channel", menuName = "Events/Void Event Channel")]
+	public class VoidEventChannelSO : ScriptableObject
 	{
-		OnEventRaised?.Invoke();
+		public event Action OnEventRaised;
+
+		public void RaiseEvent()
+		{
+			OnEventRaised?.Invoke();
+		}
 	}
 }

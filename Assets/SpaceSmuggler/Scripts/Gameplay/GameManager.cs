@@ -1,32 +1,35 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[SerializeField] GameStateSO _gameState = default;
-	[SerializeField] InputReaderSO _inputReader = default;
-
-	void OnEnable()
+	public class GameManager : MonoBehaviour
 	{
-		_gameState.GameStateChangedEvent += OnStateChanged;
-	}
+		[SerializeField] GameStateSO _gameState = default;
+		[SerializeField] InputReaderSO _inputReader = default;
 
-	void OnDisable()
-	{
-		_gameState.GameStateChangedEvent -= OnStateChanged;
-	}
-
-	public void OnStateChanged()
-	{
-		switch (_gameState.CurrentGameState)
+		void OnEnable()
 		{
-			case GameState.Play:
-				_inputReader.EnablePlayInput();
-				Time.timeScale = 1f;
-				break;
-			case GameState.Pause:
-				_inputReader.EnablePauseInput();
-				Time.timeScale = 0f;
-				break;
+			_gameState.GameStateChangedEvent += OnStateChanged;
+		}
+
+		void OnDisable()
+		{
+			_gameState.GameStateChangedEvent -= OnStateChanged;
+		}
+
+		public void OnStateChanged()
+		{
+			switch (_gameState.CurrentGameState)
+			{
+				case GameState.Play:
+					_inputReader.EnablePlayInput();
+					Time.timeScale = 1f;
+					break;
+				case GameState.Pause:
+					_inputReader.EnablePauseInput();
+					Time.timeScale = 0f;
+					break;
+			}
 		}
 	}
 }

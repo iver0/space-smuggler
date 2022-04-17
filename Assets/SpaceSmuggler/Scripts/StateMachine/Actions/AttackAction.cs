@@ -1,18 +1,21 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackAction", menuName = "AI/Actions/Attack")]
-public class AttackAction : Actions
+namespace SpaceSmuggler
 {
-	public override void Act(StateController controller)
+	[CreateAssetMenu(fileName = "AttackAction", menuName = "AI/Actions/Attack")]
+	public class AttackAction : Actions
 	{
-		Attack(controller);
-	}
-
-	void Attack(StateController controller)
-	{
-		if (controller.CheckIfCountDownElapsed(controller.BotStats.AttackRate))
+		public override void Act(StateController controller)
 		{
-			controller.Bot.Attack(controller.BotStats.AttackDamage);
+			Attack(controller);
+		}
+
+		void Attack(StateController controller)
+		{
+			if (controller.CheckIfCountDownElapsed(controller.BotStats.AttackRate))
+			{
+				controller.Bot.Attack(controller.BotStats.AttackDamage);
+			}
 		}
 	}
 }

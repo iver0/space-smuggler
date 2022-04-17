@@ -1,16 +1,19 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChaseAction", menuName = "AI/Actions/Chase")]
-public class ChaseAction : Actions
+namespace SpaceSmuggler
 {
-	public override void Act(StateController controller)
+	[CreateAssetMenu(fileName = "ChaseAction", menuName = "AI/Actions/Chase")]
+	public class ChaseAction : Actions
 	{
-		Chase(controller);
-	}
+		public override void Act(StateController controller)
+		{
+			Chase(controller);
+		}
 
-	void Chase(StateController controller)
-	{
-		controller.NavMeshAgent.SetDestination(controller.PlayerTransform.position);
-		controller.NavMeshAgent.isStopped = false;
+		void Chase(StateController controller)
+		{
+			controller.NavMeshAgent.SetDestination(controller.PlayerTransform.position);
+			controller.NavMeshAgent.isStopped = false;
+		}
 	}
 }

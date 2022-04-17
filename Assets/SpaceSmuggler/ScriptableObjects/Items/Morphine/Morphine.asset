@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0bd2023722be548a0dfe4e7b5af477, type: 3}
+  m_Name: Morphine
+  m_EditorClassIdentifier: 
+  Increment: 25
+  NewMax: 125
+  Duration: 60
+  AudioEvent: {fileID: 11400000, guid: 002fa95caffd8294a8a27371cc41ffb9, type: 2}
+  IsCollected: 1
+  gameObject: {fileID: 0}
+  _healthItemEvent: {fileID: 11400000, guid: 34367336cda7e5d49a8596ca9aaf6fdb, type: 2}

@@ -1,29 +1,32 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AudioEventSO), true)]
-public class AudioEventEditor : Editor
+namespace SpaceSmuggler
 {
-	[SerializeField] AudioSource _previewer;
-
-	public void OnEnable()
+	[CustomEditor(typeof(AudioEventSO), true)]
+	public class AudioEventEditor : Editor
 	{
-		_previewer = EditorUtility.CreateGameObjectWithHideFlags("Audio preview", HideFlags.HideAndDontSave, typeof(AudioSource)).GetComponent<AudioSource>();
-		((AudioEventSO)target).Source = _previewer;
-	}
+		[SerializeField] AudioSource _previewer;
 
-	public void OnDisable()
-	{
-		DestroyImmediate(_previewer.gameObject);
-	}
+		public void OnEnable()
+		{
+			_previewer = EditorUtility.CreateGameObjectWithHideFlags("Audio preview", HideFlags.HideAndDontSave, typeof(AudioSource)).GetComponent<AudioSource>();
+			((AudioEventSO)target).Source = _previewer;
+		}
 
-	public override void OnInspectorGUI()
-	{
-		DrawDefaultInspector();
+		public void OnDisable()
+		{
+			DestroyImmediate(_previewer.gameObject);
+		}
 
-		EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
-		if (GUILayout.Button("Preview"))
-			((AudioEventSO)target).Play();
-		EditorGUI.EndDisabledGroup();
+		public override void OnInspectorGUI()
+		{
+			DrawDefaultInspector();
+
+			EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
+			if (GUILayout.Button("Preview"))
+				((AudioEventSO)target).Play();
+			EditorGUI.EndDisabledGroup();
+		}
 	}
 }

@@ -1,32 +1,23 @@
-using System;
 using UnityEngine;
 
-public class Medkit : MonoBehaviour, ICollectible
+namespace SpaceSmuggler
 {
-	public static event Action<GameObject, int> MedkitCollected;
-	[SerializeField] AudioEventSO _audioEvent;
-
-	void OnEnable()
+	/// <summary>
+	/// Medkit item class.
+	/// </summary>
+	public class Medkit : ItemSO
 	{
-		PlayerHealth.ItemCollected += OnItemCollected;
-	}
+		[Header("Broadcasting on")]
+		[SerializeField] ItemEventChannelSO _healthItemEvent = default;
 
-	void OnDisable()
-	{
-		PlayerHealth.ItemCollected -= OnItemCollected;
-	}
-
-	public void Collect()
-	{
-		MedkitCollected?.Invoke(gameObject, 25);
-	}
-
-	public void OnItemCollected(GameObject item)
-	{
-		if (ReferenceEquals(item, gameObject))
+		/// <summary>
+		/// Increments player's health.
+		/// </summary>
+		public override void Collect(GameObject go)
 		{
-			_audioEvent.Play();
-			Destroy(gameObject);
+			gameObject = go;
+			_healthItemEvent.RaiseEvent(this);
+			if (IsCollected) OnPickup();
 		}
 	}
 }

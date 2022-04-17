@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IBot
+namespace SpaceSmuggler
 {
-	[SerializeField] Player _player;
-
-	public void Attack(int damage)
+	public class Enemy : MonoBehaviour, IBot
 	{
-		_player.TakeDamage(damage);
+		[SerializeField] Player _player;
+
+		public void Attack(int damage)
+		{
+			_player.TakeDamage(damage);
+		}
 	}
 }

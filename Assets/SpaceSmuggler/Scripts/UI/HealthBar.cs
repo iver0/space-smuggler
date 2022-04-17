@@ -1,27 +1,30 @@
 using TMPro;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[Header("Listening on")]
-	[SerializeField] IntEventChannelSO _healthChangedEventChannel = default;
-	TextMeshProUGUI _healthText;
-
-	void OnEnable()
+	public class HealthBar : MonoBehaviour
 	{
-		_healthText = GetComponent<TextMeshProUGUI>();
-		RenderHealth(100);
+		[Header("Listening on")]
+		[SerializeField] IntEventChannelSO _healthChangedEventChannel = default;
+		TextMeshProUGUI _healthText;
 
-		_healthChangedEventChannel.OnEventRaised += RenderHealth;
-	}
+		void OnEnable()
+		{
+			_healthText = GetComponent<TextMeshProUGUI>();
+			RenderHealth(100);
 
-	void OnDisable()
-	{
-		_healthChangedEventChannel.OnEventRaised -= RenderHealth;
-	}
+			_healthChangedEventChannel.OnEventRaised += RenderHealth;
+		}
 
-	void RenderHealth(int health)
-	{
-		_healthText.text = $"Health: {health}";
+		void OnDisable()
+		{
+			_healthChangedEventChannel.OnEventRaised -= RenderHealth;
+		}
+
+		void RenderHealth(int health)
+		{
+			_healthText.text = $"Health: {health}";
+		}
 	}
 }

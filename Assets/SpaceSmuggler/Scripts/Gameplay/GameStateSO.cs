@@ -1,33 +1,36 @@
 using UnityEngine;
 
-public enum GameState
+namespace SpaceSmuggler
 {
-	Play,
-	Pause,
-}
-
-[CreateAssetMenu(fileName = "GameState", menuName = "Gameplay/GameState")]
-public class GameStateSO : ScriptableObject
-{
-	public event System.Action GameStateChangedEvent;
-	public GameState CurrentGameState => _currentGameState;
-	[SerializeField] GameState _currentGameState = default;
-
-	void OnEnable()
+	public enum GameState
 	{
-		PauseMenu.ChangeGameStateEvent += OnChangeGameState;
+		Play,
+		Pause,
 	}
 
-	void OnDisable()
+	[CreateAssetMenu(fileName = "GameState", menuName = "Gameplay/GameState")]
+	public class GameStateSO : ScriptableObject
 	{
-		PauseMenu.ChangeGameStateEvent -= OnChangeGameState;
-	}
+		public event System.Action GameStateChangedEvent;
+		public GameState CurrentGameState => _currentGameState;
+		[SerializeField] GameState _currentGameState = default;
 
-	public void OnChangeGameState(GameState newGameState)
-	{
-		if (newGameState == CurrentGameState)
-			return;
-		_currentGameState = newGameState;
-		GameStateChangedEvent?.Invoke();
+		void OnEnable()
+		{
+			PauseMenu.ChangeGameStateEvent += OnChangeGameState;
+		}
+
+		void OnDisable()
+		{
+			PauseMenu.ChangeGameStateEvent -= OnChangeGameState;
+		}
+
+		public void OnChangeGameState(GameState newGameState)
+		{
+			if (newGameState == CurrentGameState)
+				return;
+			_currentGameState = newGameState;
+			GameStateChangedEvent?.Invoke();
+		}
 	}
 }

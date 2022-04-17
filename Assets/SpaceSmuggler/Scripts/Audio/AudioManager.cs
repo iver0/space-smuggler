@@ -1,12 +1,18 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[SerializeField] AudioManagerSO _audioManager = default;
-
-	void Awake()
+	/// <summary>
+	/// Holds audio manager scriptable object.
+	/// </summary>
+	public class AudioManager : MonoBehaviour
 	{
-		var source = GetComponent<AudioSource>();
-		_audioManager.Source = source;
+		[SerializeField] AudioManagerSO _audioManager = default;
+
+		void Awake()
+		{
+			var source = GetComponent<AudioSource>();
+			_audioManager.Source = source;
+		}
 	}
 }

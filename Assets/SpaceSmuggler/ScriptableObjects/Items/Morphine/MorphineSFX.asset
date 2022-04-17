@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
-  m_Name: GlockFiringSound
+  m_Name: MorphineSFX
   m_EditorClassIdentifier: 
-  Source: {fileID: 0}
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 948342dbb4ee86d4cbe5a50e9aeb764c, type: 3}
   Volume:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.10063737
+    maxValue: 0.20127472
   Pitch:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.89969814
+    maxValue: 1.194901
   _SFXEventChannel: {fileID: 11400000, guid: 957fc7cc039b4f84e9205fbc158679f7, type: 2}
+  Source: {fileID: 0}

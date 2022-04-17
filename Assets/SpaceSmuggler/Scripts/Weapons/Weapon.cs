@@ -1,97 +1,104 @@
 using System.Collections;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace SpaceSmuggler
 {
-	[SerializeField] InputReaderSO _inputReader = default;
-	[SerializeField] WeaponStatsSO _weapon = default;
-	[SerializeField] GameObject _bulletPrefab;
-	[SerializeField] Transform _bulletParent;
-	[SerializeField] Transform _firePoint;
-	Transform _player;
-	Vector2 _look;
-	Vector2 _mousePosition;
-	Coroutine _firingRoutine;
-	bool _attackCanceled;
-
-	void OnEnable()
+	/// <summary>
+	/// Base class for all weapons.
+	/// </summary>
+	public class Weapon : MonoBehaviour
 	{
-		_player = transform.parent.transform.parent.transform;
+		[SerializeField] InputReaderSO _inputReader = default;
+		[SerializeField] WeaponSO _weapon = default;
+		[SerializeField] GameObject _bulletPrefab;
+		[SerializeField] Transform _bulletParent;
+		[SerializeField] Transform _firePoint;
+		Transform _player;
+		Vector2 _look;
+		Vector2 _mousePosition;
+		Coroutine _firingRoutine;
+		bool _attackCanceled;
 
-		_inputReader.LookEvent += OnLook;
-		_inputReader.AttackEvent += OnAttack;
-		_inputReader.AttackCanceledEvent += OnAttackCanceled;
-	}
-
-	void OnDisable()
-	{
-		_inputReader.LookEvent -= OnLook;
-		_inputReader.AttackEvent -= OnAttack;
-		_inputReader.AttackCanceledEvent -= OnAttackCanceled;
-	}
-
-	void Update()
-	{
-		_mousePosition = Camera.main.ScreenToWorldPoint(_look);
-	}
-
-	void Fire()
-	{
-		_weapon.FiringSound.Play();
-
-		// Create a bullet particle
-		GameObject bullet = Instantiate(
-			_bulletPrefab,
-			_firePoint.position,
-			_firePoint.rotation,
-			_bulletParent
-		);
-		bullet
-			.GetComponent<Rigidbody2D>()
-			.AddForce(_firePoint.up * Random.Range(49f, 50f), ForceMode2D.Impulse);
-
-		// Check for hit
-		RaycastHit2D hit = Physics2D.Raycast(_player.position, _mousePosition);
-		if (hit && hit.transform.TryGetComponent<Target>(out var target))
-			target.TakeDamage(_weapon.Damage);
-	}
-
-	void Stop()
-	{
-		if (_firingRoutine != null)
+		void OnEnable()
 		{
-			StopCoroutine(_firingRoutine);
-			_firingRoutine = null;
-			_attackCanceled = false;
+			_player = transform.parent.transform.parent.transform;
+
+			_inputReader.LookEvent += OnLook;
+			_inputReader.AttackEvent += OnAttack;
+			_inputReader.AttackCanceledEvent += OnAttackCanceled;
 		}
-	}
 
-	IEnumerator FiringRoutine()
-	{
-		do
+		void OnDisable()
 		{
-			Fire();
-			yield return new WaitForSeconds(_weapon.FireRate);
-		} while (!_attackCanceled);
-		Stop();
-	}
+			_inputReader.LookEvent -= OnLook;
+			_inputReader.AttackEvent -= OnAttack;
+			_inputReader.AttackCanceledEvent -= OnAttackCanceled;
+		}
 
-	// Event listeners
-	void OnLook(Vector2 look)
-	{
-		_look = look;
-	}
+		void Update()
+		{
+			_mousePosition = Camera.main.ScreenToWorldPoint(_look);
+		}
 
-	void OnAttack()
-	{
-		if (_firingRoutine == null)
-			_firingRoutine = StartCoroutine(FiringRoutine());
-		if (!_weapon.IsAutomatic)
+		void Fire()
+		{
+			_weapon.FiringSound.Play();
+
+			// Create a bullet particle
+			GameObject bullet = Instantiate(
+				_bulletPrefab,
+				_firePoint.position,
+				_firePoint.rotation,
+				_bulletParent
+			);
+			bullet
+				.GetComponent<Rigidbody2D>()
+				.AddForce(_firePoint.up * Random.Range(49f, 50f), ForceMode2D.Impulse);
+			Destroy(bullet, 1f);
+
+			// Check for hit
+			RaycastHit2D hit = Physics2D.Raycast(_player.position, _mousePosition);
+			if (hit && hit.transform.TryGetComponent<Target>(out var target))
+				target.TakeDamage(_weapon.Damage);
+		}
+
+		void Stop()
+		{
+			if (_firingRoutine != null)
+			{
+				StopCoroutine(_firingRoutine);
+				_firingRoutine = null;
+				_attackCanceled = false;
+			}
+		}
+
+		IEnumerator FiringRoutine()
+		{
+			do
+			{
+				Fire();
+				yield return new WaitForSeconds(_weapon.FireRate);
+			} while (!_attackCanceled);
+			Stop();
+		}
+
+		// Event listeners
+		void OnLook(Vector2 look)
+		{
+			_look = look;
+		}
+
+		void OnAttack()
+		{
+			if (_firingRoutine == null)
+				_firingRoutine = StartCoroutine(FiringRoutine());
+			if (!_weapon.IsAutomatic)
+				_attackCanceled = true;
+		}
+
+		void OnAttackCanceled()
+		{
 			_attackCanceled = true;
-	}
-
-	void OnAttackCanceled()
-	{
-		_attackCanceled = true;
+		}
 	}
 }

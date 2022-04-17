@@ -1,36 +1,39 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/State")]
-public class State : ScriptableObject
+namespace SpaceSmuggler
 {
-	public Actions[] Actions;
-	public Transition[] Transitions;
-	public Color SceneGizmoColor = Color.grey;
-
-	public void UpdateState(StateController controller)
+	[CreateAssetMenu(menuName = "AI/State")]
+	public class State : ScriptableObject
 	{
-		DoActions(controller);
-		CheckTransitions(controller);
-	}
+		public Actions[] Actions;
+		public Transition[] Transitions;
+		public Color SceneGizmoColor = Color.grey;
 
-	void DoActions(StateController controller)
-	{
-		for (int i = 0; i < Actions.Length; i++)
+		public void UpdateState(StateController controller)
 		{
-			Actions[i].Act(controller);
+			DoActions(controller);
+			CheckTransitions(controller);
 		}
-	}
 
-	void CheckTransitions(StateController controller)
-	{
-		for (int i = 0; i < Transitions.Length; i++)
+		void DoActions(StateController controller)
 		{
-			bool decisionSucceeded = Transitions[i].Decision.Decide(controller);
+			for (int i = 0; i < Actions.Length; i++)
+			{
+				Actions[i].Act(controller);
+			}
+		}
 
-			if (decisionSucceeded)
-				controller.TransitionToState(Transitions[i].TrueState);
-			else
-				controller.TransitionToState(Transitions[i].FalseState);
+		void CheckTransitions(StateController controller)
+		{
+			for (int i = 0; i < Transitions.Length; i++)
+			{
+				bool decisionSucceeded = Transitions[i].Decision.Decide(controller);
+
+				if (decisionSucceeded)
+					controller.TransitionToState(Transitions[i].TrueState);
+				else
+					controller.TransitionToState(Transitions[i].FalseState);
+			}
 		}
 	}
 }

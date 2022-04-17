@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 8502a3e52d5f01348b32924f6bc5abb1
+labels:
+- Blueprint
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

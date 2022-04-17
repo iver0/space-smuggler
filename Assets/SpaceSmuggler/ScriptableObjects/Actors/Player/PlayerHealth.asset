@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf64a5749d326164fbb6c92b888fe4f8, type: 3}
-  m_Name: GlockSO
+  m_Script: {fileID: 11500000, guid: 3a830e50725c0484682eda744c5a60a8, type: 3}
+  m_Name: PlayerHealth
   m_EditorClassIdentifier: 
-  FiringSound: {fileID: 11400000, guid: e04f409ab6bc6b64aa6c1c959b8ab2de, type: 2}
-  Damage: 20
-  IsAutomatic: 0
-  FireRate: 0.1
-  Spread: 0.1
+  _playerData: {fileID: 11400000, guid: 7f5953ce55442f4439adc8079cf3a615, type: 2}

@@ -2,45 +2,48 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+namespace SpaceSmuggler
 {
-	public static event Action<GameState> ChangeGameStateEvent;
-	[SerializeField] InputReaderSO _inputReader = default;
-	[SerializeField] GameObject _pauseMenu;
-
-	void Awake()
+	public class PauseMenu : MonoBehaviour
 	{
-		_pauseMenu.SetActive(false);
-	}
+		public static event Action<GameState> ChangeGameStateEvent;
+		[SerializeField] InputReaderSO _inputReader = default;
+		[SerializeField] GameObject _pauseMenu;
 
-	void OnEnable()
-	{
-		_inputReader.PauseEvent += OnPause;
-		_inputReader.ResumeEvent += OnResume;
-	}
+		void Awake()
+		{
+			_pauseMenu.SetActive(false);
+		}
 
-	void OnDisable()
-	{
-		_inputReader.PauseEvent -= OnPause;
-		_inputReader.ResumeEvent -= OnResume;
-	}
+		void OnEnable()
+		{
+			_inputReader.PauseEvent += OnPause;
+			_inputReader.ResumeEvent += OnResume;
+		}
 
-	public void QuitGame()
-	{
-		OnResume();
-		SceneManager.LoadScene("MainMenu");
-	}
+		void OnDisable()
+		{
+			_inputReader.PauseEvent -= OnPause;
+			_inputReader.ResumeEvent -= OnResume;
+		}
 
-	// Event listeners
-	void OnPause()
-	{
-		ChangeGameStateEvent?.Invoke(GameState.Pause);
-		_pauseMenu.SetActive(true);
-	}
+		public void QuitGame()
+		{
+			OnResume();
+			SceneManager.LoadScene("MainMenu");
+		}
 
-	void OnResume()
-	{
-		ChangeGameStateEvent?.Invoke(GameState.Play);
-		_pauseMenu.SetActive(false);
+		// Event listeners
+		void OnPause()
+		{
+			ChangeGameStateEvent?.Invoke(GameState.Pause);
+			_pauseMenu.SetActive(true);
+		}
+
+		void OnResume()
+		{
+			ChangeGameStateEvent?.Invoke(GameState.Play);
+			_pauseMenu.SetActive(false);
+		}
 	}
 }

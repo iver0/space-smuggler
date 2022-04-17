@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class Decisions : ScriptableObject
+namespace SpaceSmuggler
 {
-	public abstract bool Decide(StateController controller);
+	public abstract class Decisions : ScriptableObject
+	{
+		public abstract bool Decide(StateController controller);
+	}
 }

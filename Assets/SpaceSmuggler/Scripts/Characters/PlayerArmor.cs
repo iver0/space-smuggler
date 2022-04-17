@@ -1,44 +1,41 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerArmor : MonoBehaviour
+namespace SpaceSmuggler
 {
-	public static UnityAction<GameObject> ItemCollected;
-	[SerializeField] PlayerDataSO _playerData = default;
-
-	void OnEnable()
+	public class PlayerArmor : MonoBehaviour
 	{
-		Armor.ArmorCollected += OnItemCollected;
-		LightArmor.LightArmorCollected += OnItemCollected;
-		HeavyArmor.HeavyArmorCollected += OnItemCollected;
-	}
+		public static UnityAction<GameObject> ItemCollected;
+		[SerializeField] PlayerDataSO _playerData = default;
 
-	void OnDisable()
-	{
-		Armor.ArmorCollected -= OnItemCollected;
-		LightArmor.LightArmorCollected -= OnItemCollected;
-		HeavyArmor.HeavyArmorCollected -= OnItemCollected;
-	}
-
-	void OnItemCollected(GameObject item, int value)
-	{
-		if (_playerData.Armor != _playerData.MaxArmor)
+		void OnEnable()
 		{
-			if (_playerData.Armor + value < _playerData.MaxArmor)
-			{
-				_playerData.Armor += value;
-			}
-			else
-			{
-				_playerData.Armor = _playerData.MaxArmor;
-			}
-			ItemCollected?.Invoke(item);
 		}
-	}
 
-	void OnItemCollected(GameObject item, int value, int maxValue)
-	{
-		_playerData.MaxArmor = maxValue;
-		OnItemCollected(item, value);
+		void OnDisable()
+		{
+		}
+
+		void OnItemCollected(GameObject item, int value)
+		{
+			if (_playerData.Armor != _playerData.MaxArmor)
+			{
+				if (_playerData.Armor + value < _playerData.MaxArmor)
+				{
+					_playerData.Armor += value;
+				}
+				else
+				{
+					_playerData.Armor = _playerData.MaxArmor;
+				}
+				ItemCollected?.Invoke(item);
+			}
+		}
+
+		void OnItemCollected(GameObject item, int value, int maxValue)
+		{
+			_playerData.MaxArmor = maxValue;
+			OnItemCollected(item, value);
+		}
 	}
 }

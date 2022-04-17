@@ -1,4 +1,7 @@
-public interface IBot
+namespace SpaceSmuggler
 {
-    void Attack(int damage);
+	public interface IBot
+	{
+		void Attack(int damage);
+	}
 }

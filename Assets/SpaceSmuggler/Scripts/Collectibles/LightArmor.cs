@@ -1,32 +1,23 @@
-using System;
 using UnityEngine;
 
-public class LightArmor : MonoBehaviour, ICollectible
+namespace SpaceSmuggler
 {
-	public static event Action<GameObject, int, int> LightArmorCollected;
-	[SerializeField] AudioEventSO _audioEvent;
-
-	void OnEnable()
+	/// <summary>
+	/// Light armor item class.
+	/// </summary>
+	public class LightArmor : ItemSO
 	{
-		PlayerArmor.ItemCollected += OnItemCollected;
-	}
+		[Header("Broadcasting on")]
+		[SerializeField] ItemEventChannelSO _armorItemEvent = default;
 
-	void OnDisable()
-	{
-		PlayerArmor.ItemCollected -= OnItemCollected;
-	}
-
-	public void Collect()
-	{
-		LightArmorCollected?.Invoke(gameObject, 25, 75);
-	}
-
-	public void OnItemCollected(GameObject item)
-	{
-		if (ReferenceEquals(item, gameObject))
+		/// <summary>
+		/// Increments player's armor and sets new max armor.
+		/// </summary>
+		public override void Collect(GameObject go)
 		{
-			_audioEvent.Play();
-			Destroy(gameObject);
+			gameObject = go;
+			_armorItemEvent.RaiseEvent(this);
+			if (IsCollected) OnPickup();
 		}
 	}
 }

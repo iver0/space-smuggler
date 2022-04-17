@@ -1,32 +1,24 @@
-using System;
 using UnityEngine;
 
-public class Morphine : MonoBehaviour, ICollectible
+namespace SpaceSmuggler
 {
-	public static event Action<GameObject, int, int, int> MorphineCollected;
-	[SerializeField] AudioEventSO _audioEvent;
-
-	void OnEnable()
+	/// <summary>
+	/// Morphine item class.
+	/// </summary>
+	[CreateAssetMenu(menuName = "Gameplay/Items/Morphine")]
+	public class Morphine : ItemSO
 	{
-		PlayerHealth.ItemCollected += OnItemCollected;
-	}
+		[Header("Broadcasting on")]
+		[SerializeField] ItemEventChannelSO _healthItemEvent = default;
 
-	void OnDisable()
-	{
-		PlayerHealth.ItemCollected -= OnItemCollected;
-	}
-
-	public void Collect()
-	{
-		MorphineCollected?.Invoke(gameObject, 25, 125, 60);
-	}
-
-	public void OnItemCollected(GameObject item)
-	{
-		if (ReferenceEquals(item, gameObject))
+		/// <summary>
+		/// Increments player's health and sets new max health for a limited amount of time.
+		/// </summary>
+		public override void Collect(GameObject go)
 		{
-			_audioEvent.Play();
-			Destroy(gameObject);
+			gameObject = go;
+			_healthItemEvent.RaiseEvent(this);
+			if (IsCollected) OnPickup();
 		}
 	}
 }

@@ -1,32 +1,23 @@
-using System;
 using UnityEngine;
 
-public class HeavyArmor : MonoBehaviour, ICollectible
+namespace SpaceSmuggler
 {
-	public static event Action<GameObject, int, int> HeavyArmorCollected;
-	[SerializeField] AudioEventSO _audioEvent;
-
-	void OnEnable()
+	/// <summary>
+	/// Heavy armor item class.
+	/// </summary>
+	public class HeavyArmor : ItemSO
 	{
-		PlayerArmor.ItemCollected += OnItemCollected;
-	}
+		[Header("Broadcasting on")]
+		[SerializeField] ItemEventChannelSO _armorItemEvent = default;
 
-	void OnDisable()
-	{
-		PlayerArmor.ItemCollected -= OnItemCollected;
-	}
-
-	public void Collect()
-	{
-		HeavyArmorCollected?.Invoke(gameObject, 25, 125);
-	}
-
-	public void OnItemCollected(GameObject item)
-	{
-		if (ReferenceEquals(item, gameObject))
+		/// <summary>
+		/// Increments player's armor and sets new max armor.
+		/// </summary>
+		public override void Collect(GameObject go)
 		{
-			_audioEvent.Play();
-			Destroy(gameObject);
+			gameObject = go;
+			_armorItemEvent.RaiseEvent(this);
+			if (IsCollected) OnPickup();
 		}
 	}
 }

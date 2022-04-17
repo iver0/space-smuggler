@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2556837425703553030}
   - component: {fileID: 3881861333426441468}
   - component: {fileID: 2918564709099094541}
-  - component: {fileID: 1145747755785403503}
+  - component: {fileID: -3914789654673908851}
   m_Layer: 0
   m_Name: Morphine
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1145747755785403503
+--- !u!114 &-3914789654673908851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5863097485692544816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0bd2023722be548a0dfe4e7b5af477, type: 3}
+  m_Script: {fileID: 11500000, guid: 530b41788f0b8f54e9a4b2efb2d014ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioEvent: {fileID: 11400000, guid: 002fa95caffd8294a8a27371cc41ffb9, type: 2}
+  _item: {fileID: 11400000, guid: 3af3c1e4b98ac174ab6e12cc0bc4e2cf, type: 2}

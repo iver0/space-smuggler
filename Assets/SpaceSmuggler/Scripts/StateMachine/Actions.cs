@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class Actions : ScriptableObject
+namespace SpaceSmuggler
 {
-	public abstract void Act(StateController controller);
+	public abstract class Actions : ScriptableObject
+	{
+		public abstract void Act(StateController controller);
+	}
 }
