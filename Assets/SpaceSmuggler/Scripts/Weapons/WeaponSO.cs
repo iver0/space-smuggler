@@ -12,7 +12,9 @@ namespace SpaceSmuggler
 		[Range(0, 100)]
 		public int Damage;
 		public bool IsAutomatic;
+		[Tooltip("Weapon firing rate.")]
 		public float FireRate;
+		[Tooltip("Weapon spread.")]
 		[Range(0, 1)]
 		public float Spread;
 	}

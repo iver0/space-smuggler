@@ -8,6 +8,7 @@ namespace SpaceSmuggler
 	/// </summary>
 	public class Weapon : MonoBehaviour
 	{
+		#region Fields
 		[SerializeField] InputReaderSO _inputReader = default;
 		[SerializeField] WeaponSO _weapon = default;
 		[SerializeField] GameObject _bulletPrefab;
@@ -18,7 +19,9 @@ namespace SpaceSmuggler
 		Vector2 _mousePosition;
 		Coroutine _firingRoutine;
 		bool _attackCanceled;
+		#endregion
 
+		#region LifeCycle
 		void OnEnable()
 		{
 			_player = transform.parent.transform.parent.transform;
@@ -39,7 +42,9 @@ namespace SpaceSmuggler
 		{
 			_mousePosition = Camera.main.ScreenToWorldPoint(_look);
 		}
+		#endregion
 
+		#region PublicMethods
 		void Fire()
 		{
 			_weapon.FiringSound.Play();
@@ -81,8 +86,9 @@ namespace SpaceSmuggler
 			} while (!_attackCanceled);
 			Stop();
 		}
+		#endregion
 
-		// Event listeners
+		#region EventListeners
 		void OnLook(Vector2 look)
 		{
 			_look = look;
@@ -100,5 +106,6 @@ namespace SpaceSmuggler
 		{
 			_attackCanceled = true;
 		}
+		#endregion
 	}
 }
