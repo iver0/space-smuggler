@@ -12,7 +12,9 @@ namespace SpaceSmuggler
 
 		void Chase(StateController controller)
 		{
-			controller.NavMeshAgent.SetDestination(controller.PlayerTransform.position);
+			var agentDrift = 0.0001f;
+			var driftPos = controller.PlayerTransform.position + (Vector3)(agentDrift * Random.insideUnitCircle);
+			controller.NavMeshAgent.SetDestination(driftPos);
 			controller.NavMeshAgent.isStopped = false;
 		}
 	}

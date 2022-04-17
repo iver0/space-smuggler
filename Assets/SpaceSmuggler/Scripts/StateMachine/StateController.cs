@@ -33,6 +33,7 @@ namespace SpaceSmuggler
 			_aiActive = aiActivation;
 			NavMeshAgent.updateRotation = false;
 			NavMeshAgent.updateUpAxis = false;
+			NavMeshAgent.speed = BotStats.MoveSpeed;
 			if (_aiActive)
 				NavMeshAgent.enabled = true;
 			else

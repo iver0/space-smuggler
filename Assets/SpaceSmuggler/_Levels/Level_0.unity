@@ -42490,6 +42490,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 269243446}
     m_Modifications:
+    - target: {fileID: 3703205916002024425, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703205916002024425, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703205916002024425, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4469692973471981597, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
       propertyPath: m_RootOrder
       value: 1
