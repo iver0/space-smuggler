@@ -33,7 +33,7 @@ namespace SpaceSmuggler
 			SceneManager.LoadScene("MainMenu");
 		}
 
-		// Event listeners
+		#region EventListeners
 		void OnPause()
 		{
 			ChangeGameStateEvent?.Invoke(GameState.Pause);
@@ -45,5 +45,6 @@ namespace SpaceSmuggler
 			ChangeGameStateEvent?.Invoke(GameState.Play);
 			_pauseMenu.SetActive(false);
 		}
+		#endregion
 	}
 }
