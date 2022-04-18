@@ -23,12 +23,16 @@ namespace SpaceSmuggler
 		#endregion
 
 		#region LifeCycle
-		void OnEnable()
+		void Awake()
 		{
 			NavMeshAgent = GetComponent<NavMeshAgent>();
 			NavMeshAgent.updateRotation = false;
 			NavMeshAgent.updateUpAxis = false;
 			NavMeshAgent.speed = BotStats.MoveSpeed;
+		}
+
+		void OnEnable()
+		{
 			_playerDeathEventChannel.OnEventRaised += PlayerDeath;
 		}
 

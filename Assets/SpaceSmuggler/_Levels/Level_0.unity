@@ -42132,6 +42132,11 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!4 &447378655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7917539210035034231, guid: 90b7c0cdc9eb6b648bef047489a5bd36, type: 3}
+  m_PrefabInstance: {fileID: 7917539210197372266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &726450057
 GameObject:
   m_ObjectHideFlags: 0
@@ -42249,6 +42254,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1308552383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7917539208797046210, guid: 90b7c0cdc9eb6b648bef047489a5bd36, type: 3}
+  m_PrefabInstance: {fileID: 7917539210197372266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308552386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308552383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde8182e429c2a54aae78aed316d027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 8b25545ada142d8478e3233633546bea, type: 2}
+  _weapon: {fileID: 11400000, guid: 7b4af9206fbba2e4f870f5c4964affd9, type: 2}
+  _bulletPrefab: {fileID: 1015486489146355095, guid: fd15540070f32324da4432cc09e1a821, type: 3}
+  _bulletParent: {fileID: 1650600884}
+  _firePoint: {fileID: 447378655}
 --- !u!1 &1313114231
 GameObject:
   m_ObjectHideFlags: 0
@@ -42552,6 +42579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 4567987098240648458, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7208977756155465846, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
       propertyPath: PlayerTransform
       value: 
@@ -42633,11 +42664,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 328692, guid: f9a05845f1e696047a7db2ce357f788c, type: 3}
       propertyPath: m_RefResolutionX
-      value: 480
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 328692, guid: f9a05845f1e696047a7db2ce357f788c, type: 3}
       propertyPath: m_RefResolutionY
-      value: 270
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5854090766328609847, guid: f9a05845f1e696047a7db2ce357f788c, type: 3}
       propertyPath: m_Name

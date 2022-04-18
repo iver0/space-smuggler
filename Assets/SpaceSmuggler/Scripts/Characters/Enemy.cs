@@ -7,15 +7,10 @@ namespace SpaceSmuggler
 		[SerializeField] Player _player;
 		StateController _controller;
 
-		void OnEnable()
+		void Start()
 		{
 			_controller = GetComponent<StateController>();
 			_controller.SetupAI(true);
-		}
-
-		void OnDisable()
-		{
-			_controller.SetupAI(false);
 		}
 
 		public void Attack(int damage)

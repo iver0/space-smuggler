@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abed8bbe91034e438cd5fee1ad11a54, type: 3}
   m_Name: GlockSFX
   m_EditorClassIdentifier: 
-  Source: {fileID: 0}
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 60bb8b15897c45a468d325f1e4a12074, type: 3}
   Volume:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.20161021
+    maxValue: 0.30224758
   Pitch:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.8057698
+    maxValue: 1.1949011
   _SFXEventChannel: {fileID: 11400000, guid: 957fc7cc039b4f84e9205fbc158679f7, type: 2}
+  Source: {fileID: 0}
