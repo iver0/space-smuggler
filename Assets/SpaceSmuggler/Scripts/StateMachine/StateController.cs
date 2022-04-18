@@ -25,6 +25,7 @@ namespace SpaceSmuggler
 		#region LifeCycle
 		void Awake()
 		{
+			Bot = gameObject.GetComponent<IBot>();
 			NavMeshAgent = GetComponent<NavMeshAgent>();
 			NavMeshAgent.updateRotation = false;
 			NavMeshAgent.updateUpAxis = false;
