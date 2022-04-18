@@ -3,8 +3,12 @@ using UnityEngine.AI;
 
 namespace SpaceSmuggler
 {
+	/// <summary>
+	/// Handles AI states.
+	/// </summary>
 	public class StateController : MonoBehaviour
 	{
+		#region Fields
 		[SerializeField] State _currentState = default;
 		[SerializeField] State _remainState = default;
 		[SerializeField] State _idleState = default;
@@ -16,10 +20,15 @@ namespace SpaceSmuggler
 		[HideInInspector] public NavMeshAgent NavMeshAgent;
 		[HideInInspector] public float StateTimeElapsed;
 		bool _aiActive;
+		#endregion
 
+		#region LifeCycle
 		void OnEnable()
 		{
 			NavMeshAgent = GetComponent<NavMeshAgent>();
+			NavMeshAgent.updateRotation = false;
+			NavMeshAgent.updateUpAxis = false;
+			NavMeshAgent.speed = BotStats.MoveSpeed;
 			_playerDeathEventChannel.OnEventRaised += PlayerDeath;
 		}
 
@@ -31,9 +40,6 @@ namespace SpaceSmuggler
 		public void SetupAI(bool aiActivation)
 		{
 			_aiActive = aiActivation;
-			NavMeshAgent.updateRotation = false;
-			NavMeshAgent.updateUpAxis = false;
-			NavMeshAgent.speed = BotStats.MoveSpeed;
 			if (_aiActive)
 				NavMeshAgent.enabled = true;
 			else
@@ -46,7 +52,9 @@ namespace SpaceSmuggler
 				return;
 			_currentState.UpdateState(this);
 		}
+		#endregion
 
+		#region Methods
 		void OnDrawGizmos()
 		{
 			if (_currentState != null)
@@ -80,5 +88,6 @@ namespace SpaceSmuggler
 		{
 			TransitionToState(_idleState);
 		}
+		#endregion
 	}
 }
