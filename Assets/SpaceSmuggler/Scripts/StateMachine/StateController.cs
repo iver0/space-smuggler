@@ -27,7 +27,7 @@ namespace SpaceSmuggler
 		{
 			Bot = gameObject.GetComponent<IBot>();
 			NavMeshAgent = GetComponent<NavMeshAgent>();
-			NavMeshAgent.updateRotation = false;
+			NavMeshAgent.updateRotation = true;
 			NavMeshAgent.updateUpAxis = false;
 			NavMeshAgent.speed = BotStats.MoveSpeed;
 		}

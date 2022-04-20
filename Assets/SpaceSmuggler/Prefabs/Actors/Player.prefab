@@ -265,8 +265,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae9c574ff6510364195a3ce828d97fe7, type: 3}
+--- !u!1 &7917539208797046210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1886976211671938886, guid: ae9c574ff6510364195a3ce828d97fe7, type: 3}
+  m_PrefabInstance: {fileID: 8633221453443117700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308552386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917539208797046210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde8182e429c2a54aae78aed316d027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 8b25545ada142d8478e3233633546bea, type: 2}
+  _weapon: {fileID: 11400000, guid: 7b4af9206fbba2e4f870f5c4964affd9, type: 2}
+  _bulletPrefab: {fileID: 1015486489146355095, guid: fd15540070f32324da4432cc09e1a821, type: 3}
+  _bulletParent: {fileID: 0}
+  _firePoint: {fileID: 7917539210035034231}
 --- !u!4 &7917539208797046211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1886976211671938887, guid: ae9c574ff6510364195a3ce828d97fe7, type: 3}
+  m_PrefabInstance: {fileID: 8633221453443117700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7917539210035034231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1886976210435525363, guid: ae9c574ff6510364195a3ce828d97fe7, type: 3}
   m_PrefabInstance: {fileID: 8633221453443117700}
   m_PrefabAsset: {fileID: 0}
