@@ -15,14 +15,12 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace SpaceSmuggler
+public partial class @InputActions : IInputActionCollection2, IDisposable
 {
-	public partial class @InputActions : IInputActionCollection2, IDisposable
-	{
-		public InputActionAsset asset { get; }
-		public @InputActions()
-		{
-			asset = InputActionAsset.FromJson(@"{
+    public InputActionAsset asset { get; }
+    public @InputActions()
+    {
+        asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputActions"",
     ""maps"": [
         {
@@ -232,170 +230,169 @@ namespace SpaceSmuggler
     ],
     ""controlSchemes"": []
 }");
-			// Player
-			m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-			m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-			m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-			m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-			m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-			// Pause
-			m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
-			m_Pause_Resume = m_Pause.FindAction("Resume", throwIfNotFound: true);
-		}
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Resume = m_Pause.FindAction("Resume", throwIfNotFound: true);
+    }
 
-		public void Dispose()
-		{
-			UnityEngine.Object.Destroy(asset);
-		}
+    public void Dispose()
+    {
+        UnityEngine.Object.Destroy(asset);
+    }
 
-		public InputBinding? bindingMask
-		{
-			get => asset.bindingMask;
-			set => asset.bindingMask = value;
-		}
+    public InputBinding? bindingMask
+    {
+        get => asset.bindingMask;
+        set => asset.bindingMask = value;
+    }
 
-		public ReadOnlyArray<InputDevice>? devices
-		{
-			get => asset.devices;
-			set => asset.devices = value;
-		}
+    public ReadOnlyArray<InputDevice>? devices
+    {
+        get => asset.devices;
+        set => asset.devices = value;
+    }
 
-		public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
 
-		public bool Contains(InputAction action)
-		{
-			return asset.Contains(action);
-		}
+    public bool Contains(InputAction action)
+    {
+        return asset.Contains(action);
+    }
 
-		public IEnumerator<InputAction> GetEnumerator()
-		{
-			return asset.GetEnumerator();
-		}
+    public IEnumerator<InputAction> GetEnumerator()
+    {
+        return asset.GetEnumerator();
+    }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
-		public void Enable()
-		{
-			asset.Enable();
-		}
+    public void Enable()
+    {
+        asset.Enable();
+    }
 
-		public void Disable()
-		{
-			asset.Disable();
-		}
-		public IEnumerable<InputBinding> bindings => asset.bindings;
+    public void Disable()
+    {
+        asset.Disable();
+    }
+    public IEnumerable<InputBinding> bindings => asset.bindings;
 
-		public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
-		{
-			return asset.FindAction(actionNameOrId, throwIfNotFound);
-		}
-		public int FindBinding(InputBinding bindingMask, out InputAction action)
-		{
-			return asset.FindBinding(bindingMask, out action);
-		}
+    public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+    {
+        return asset.FindAction(actionNameOrId, throwIfNotFound);
+    }
+    public int FindBinding(InputBinding bindingMask, out InputAction action)
+    {
+        return asset.FindBinding(bindingMask, out action);
+    }
 
-		// Player
-		private readonly InputActionMap m_Player;
-		private IPlayerActions m_PlayerActionsCallbackInterface;
-		private readonly InputAction m_Player_Move;
-		private readonly InputAction m_Player_Look;
-		private readonly InputAction m_Player_Attack;
-		private readonly InputAction m_Player_Pause;
-		public struct PlayerActions
-		{
-			private @InputActions m_Wrapper;
-			public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-			public InputAction @Move => m_Wrapper.m_Player_Move;
-			public InputAction @Look => m_Wrapper.m_Player_Look;
-			public InputAction @Attack => m_Wrapper.m_Player_Attack;
-			public InputAction @Pause => m_Wrapper.m_Player_Pause;
-			public InputActionMap Get() { return m_Wrapper.m_Player; }
-			public void Enable() { Get().Enable(); }
-			public void Disable() { Get().Disable(); }
-			public bool enabled => Get().enabled;
-			public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-			public void SetCallbacks(IPlayerActions instance)
-			{
-				if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
-				{
-					@Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-					@Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-					@Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-					@Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-					@Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-					@Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-					@Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-					@Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-					@Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-					@Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-					@Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-					@Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-				}
-				m_Wrapper.m_PlayerActionsCallbackInterface = instance;
-				if (instance != null)
-				{
-					@Move.started += instance.OnMove;
-					@Move.performed += instance.OnMove;
-					@Move.canceled += instance.OnMove;
-					@Look.started += instance.OnLook;
-					@Look.performed += instance.OnLook;
-					@Look.canceled += instance.OnLook;
-					@Attack.started += instance.OnAttack;
-					@Attack.performed += instance.OnAttack;
-					@Attack.canceled += instance.OnAttack;
-					@Pause.started += instance.OnPause;
-					@Pause.performed += instance.OnPause;
-					@Pause.canceled += instance.OnPause;
-				}
-			}
-		}
-		public PlayerActions @Player => new PlayerActions(this);
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Pause;
+    public struct PlayerActions
+    {
+        private @InputActions m_Wrapper;
+        public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
 
-		// Pause
-		private readonly InputActionMap m_Pause;
-		private IPauseActions m_PauseActionsCallbackInterface;
-		private readonly InputAction m_Pause_Resume;
-		public struct PauseActions
-		{
-			private @InputActions m_Wrapper;
-			public PauseActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-			public InputAction @Resume => m_Wrapper.m_Pause_Resume;
-			public InputActionMap Get() { return m_Wrapper.m_Pause; }
-			public void Enable() { Get().Enable(); }
-			public void Disable() { Get().Disable(); }
-			public bool enabled => Get().enabled;
-			public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
-			public void SetCallbacks(IPauseActions instance)
-			{
-				if (m_Wrapper.m_PauseActionsCallbackInterface != null)
-				{
-					@Resume.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
-					@Resume.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
-					@Resume.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
-				}
-				m_Wrapper.m_PauseActionsCallbackInterface = instance;
-				if (instance != null)
-				{
-					@Resume.started += instance.OnResume;
-					@Resume.performed += instance.OnResume;
-					@Resume.canceled += instance.OnResume;
-				}
-			}
-		}
-		public PauseActions @Pause => new PauseActions(this);
-		public interface IPlayerActions
-		{
-			void OnMove(InputAction.CallbackContext context);
-			void OnLook(InputAction.CallbackContext context);
-			void OnAttack(InputAction.CallbackContext context);
-			void OnPause(InputAction.CallbackContext context);
-		}
-		public interface IPauseActions
-		{
-			void OnResume(InputAction.CallbackContext context);
-		}
-	}
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private IPauseActions m_PauseActionsCallbackInterface;
+    private readonly InputAction m_Pause_Resume;
+    public struct PauseActions
+    {
+        private @InputActions m_Wrapper;
+        public PauseActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Resume => m_Wrapper.m_Pause_Resume;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            {
+                @Resume.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
+                @Resume.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
+                @Resume.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnResume;
+            }
+            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Resume.started += instance.OnResume;
+                @Resume.performed += instance.OnResume;
+                @Resume.canceled += instance.OnResume;
+            }
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
+    public interface IPlayerActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnResume(InputAction.CallbackContext context);
+    }
 }
