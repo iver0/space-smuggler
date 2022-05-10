@@ -42504,6 +42504,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1605592373}
+    - target: {fileID: 3703205916002024425, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4469692973471981597, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -42552,6 +42556,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 5503540747921480950, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: m_Speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208977756155465846, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 1605592372}
     - target: {fileID: 7208977756155465846, guid: 32d5df304a4b000449de77c3a9624a55, type: 3}
       propertyPath: PlayerTransform
       value: 
