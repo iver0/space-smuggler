@@ -1,21 +1,22 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SpaceSmuggler
 {
-	public class Enemy : MonoBehaviour, IBot
-	{
-		[SerializeField] Player _player;
-		StateController _controller;
+    public class Enemy : MonoBehaviour, IBot
+    {
+        [SerializeField] private Player player;
+        private StateController _controller;
 
-		void Start()
-		{
-			_controller = GetComponent<StateController>();
-			_controller.SetupAI(true);
-		}
+        private void Start()
+        {
+            _controller = GetComponent<StateController>();
+            _controller.SetupAI(true);
+        }
 
-		public void Attack(int damage)
-		{
-			_player.TakeDamage(damage);
-		}
-	}
+        public void Attack(int damage)
+        {
+            player.TakeDamage(damage);
+        }
+    }
 }
